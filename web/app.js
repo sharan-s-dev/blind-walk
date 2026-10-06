@@ -433,10 +433,10 @@ function initMap() {
 
   L.control.zoom({ position: "bottomright" }).addTo(state.map);
 
-  state.tileLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  // Default tile layer: Esri World Imagery (Satellite) - High-res aerial view, zero API key required
+  state.tileLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
     maxZoom: 19,
-    subdomains: "abcd",
-    attribution: "&copy; OpenStreetMap &copy; CARTO"
+    attribution: "&copy; Esri World Imagery"
   }).addTo(state.map);
 
   renderCampusTopography();
@@ -451,21 +451,21 @@ function renderCampusTopography() {
     const isDirt = edge.surface.includes("dirt");
 
     L.polyline([[u.lat, u.lon], [v.lat, v.lon]], {
-      color: isDirt ? "#d97706" : "#0284c7",
-      weight: isDirt ? 3 : 2.5,
+      color: isDirt ? "#f59e0b" : "#38bdf8",
+      weight: isDirt ? 3.5 : 3,
       dashArray: isDirt ? "6, 6" : null,
-      opacity: 0.4
+      opacity: 0.85
     }).addTo(state.map).bindTooltip(`${edge.name} (${edge.surface.replace(/_/g, ' ')})`);
   });
 
   Object.values(JAIN_CAMPUS_DATA.nodes).forEach(node => {
     const isForest = node.type === "forest" || node.type === "shade";
     const marker = L.circleMarker([node.lat, node.lon], {
-      radius: isForest ? 6 : 5,
+      radius: isForest ? 6.5 : 5.5,
       fillColor: isForest ? "#10b981" : "#06b6d4",
       color: "#ffffff",
-      weight: 1.5,
-      fillOpacity: 0.85
+      weight: 2,
+      fillOpacity: 0.95
     }).addTo(state.map);
 
     marker.bindPopup(`<b>${node.name}</b><br>Elevation: ${node.elev}m`);
@@ -476,21 +476,23 @@ function setTileLayer(style) {
   if (!state.map) return;
   if (state.tileLayer) state.map.removeLayer(state.tileLayer);
 
-  if (style === "sat") {
-    state.tileLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 19,
-      attribution: "&copy; Esri World Imagery"
-    });
-  } else if (style === "outdoors") {
+  if (style === "outdoors") {
+    // OpenStreetMap standard topography - Zero API key required
     state.tileLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap"
     });
-  } else {
-    state.tileLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  } else if (style === "terrain") {
+    // Esri World Topo Map - Zero API key required
+    state.tileLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 19,
-      subdomains: "abcd",
-      attribution: "&copy; CARTO"
+      attribution: "&copy; Esri World Topo Map"
+    });
+  } else {
+    // Default: Esri World Imagery (Satellite) - Zero API key required
+    state.tileLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+      maxZoom: 19,
+      attribution: "&copy; Esri World Imagery"
     });
   }
   state.tileLayer.addTo(state.map);
@@ -876,22 +878,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Layer buttons
-  document.getElementById("tileDarkBtn").addEventListener("click", (e) => {
-    document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
-    e.target.classList.add("active");
-    setTileLayer("dark");
-  });
-  document.getElementById("tileSatBtn").addEventListener("click", (e) => {
-    document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
-    e.target.classList.add("active");
-    setTileLayer("sat");
-  });
-  document.getElementById("tileOutdoorsBtn").addEventListener("click", (e) => {
-    document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
-    e.target.classList.add("active");
-    setTileLayer("outdoors");
-  });
+  // Layer buttons (100% free, zero API key required)
+  const tileSat = document.getElementById("tileSatBtn");
+  if (tileSat) {
+    tileSat.addEventListener("click", (e) => {
+      document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
+      e.target.classList.add("active");
+      setTileLayer("sat");
+    });
+  }
+  const tileOutdoors = document.getElementById("tileOutdoorsBtn");
+  if (tileOutdoors) {
+    tileOutdoors.addEventListener("click", (e) => {
+      document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
+      e.target.classList.add("active");
+      setTileLayer("outdoors");
+    });
+  }
+  const tileTerrain = document.getElementById("tileTerrainBtn");
+  if (tileTerrain) {
+    tileTerrain.addEventListener("click", (e) => {
+      document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
+      e.target.classList.add("active");
+      setTileLayer("terrain");
+    });
+  }
 
   // Export Buttons
   const exportGpxBtn = document.getElementById("exportGpxBtn");
