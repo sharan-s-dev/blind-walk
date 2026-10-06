@@ -1,0 +1,29 @@
+{
+  "name": "blindwalk",
+  "version": "1.0.0",
+  "description": "BlindWalk: Air-Gapped Spatial Routing & Interactive Sensory Audio Navigator for DEV Hacktoberfest",
+  "main": "server.py",
+  "scripts": {
+    "start": "python server.py",
+    "dev": "python server.py",
+    "cli": "python blindwalk.py",
+    "cache": "python cache_map.py",
+    "cache:mock": "python cache_map.py --synthetic",
+    "test": "python -m unittest discover tests -v",
+    "docker": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "keywords": [
+    "hacktoberfest",
+    "spatial-routing",
+    "interactive-web",
+    "offline-navigation",
+    "zero-gui",
+    "leaflet",
+    "speech-synthesis",
+    "ollama"
+  ],
+  "author": "BlindWalk Team",
+  "license": "MIT"
+}

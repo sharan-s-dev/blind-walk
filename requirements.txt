@@ -1,0 +1,18 @@
+# Core Spatial & Graph Processing
+osmnx>=1.9.0
+networkx>=3.1
+shapely>=2.0
+geopy>=2.4.0
+
+# LLM Orchestration & Local Inference
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-ollama>=0.1.0
+pydantic>=2.0
+
+# Offline Acoustic / Text-to-Speech
+pyttsx3>=2.90
+
+# Networking & Utilities (for offline fallback & testing)
+requests>=2.31.0
+pytest>=7.4.0

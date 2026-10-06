@@ -1,0 +1,71 @@
+services:
+  # ============================================================================
+  # 1. Local Offline Inference Engine (Ollama)
+  # Runs quantized 1B-3B parameter open-weight models locally inside the stack.
+  # ============================================================================
+  ollama-service:
+    image: ollama/ollama:latest
+    container_name: blindwalk-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 5s
+    restart: unless-stopped
+
+  # ============================================================================
+  # Automated Model Provisioning Init Service
+  # Pulls the specified lightweight model (llama3.2:3b) on startup once Ollama is healthy.
+  # ============================================================================
+  ollama-model-puller:
+    image: ollama/ollama:latest
+    container_name: blindwalk-model-puller
+    depends_on:
+      ollama-service:
+        condition: service_healthy
+    environment:
+      - OLLAMA_HOST=ollama-service:11434
+      - MODEL_TO_PULL=${OLLAMA_MODEL:-llama3.2:3b}
+    entrypoint: >
+      /bin/sh -c "
+        echo '=== BlindWalk Model Provisioner ===';
+        echo 'Connecting to Ollama service and pulling: '$$MODEL_TO_PULL;
+        ollama pull $$MODEL_TO_PULL;
+        echo 'Model successfully cached in air-gapped volume.';
+      "
+    restart: on-failure
+
+  # ============================================================================
+  # 2. BlindWalk Core Application & Interactive Web Server
+  # Python 3.11 environment with interactive Leaflet visualizer + spatial engine.
+  # ============================================================================
+  blindwalk-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: blindwalk-app
+    depends_on:
+      ollama-model-puller:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=http://ollama-service:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:3b}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+    devices:
+      # Pass host audio hardware to container for pyttsx3 offline acoustic output
+      - /dev/snd:/dev/snd
+    stdin_open: true
+    tty: true
+
+volumes:
+  ollama_models:
+    name: blindwalk_ollama_models
