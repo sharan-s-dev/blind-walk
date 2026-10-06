@@ -283,6 +283,7 @@ Output:
 Ran 10 tests in 0.125s
 OK (All 10 spatial geometry, loop algorithm, and suppressor tests passing)
 ```
+---
 > 🎧 **Quick Tip:** Wear headphones when testing the [Live Demo](https://sharan-s-dev.github.io/blind-walk/) to hear the binaural stereo-panned beacon pings (left ear for left turns, right ear for right turns)!
 ---
 
