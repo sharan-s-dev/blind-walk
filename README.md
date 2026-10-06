@@ -242,7 +242,7 @@ You can launch the full web interface immediately:
 ```bash
 # Clone the repository
 git clone https://github.com/sharan-s-dev/blind-walk.git
-cd blindwalk
+cd blind-walk
 
 # Start the local server
 npm start
@@ -283,7 +283,7 @@ Output:
 Ran 10 tests in 0.125s
 OK (All 10 spatial geometry, loop algorithm, and suppressor tests passing)
 ```
-
+> 🎧 **Quick Tip:** Wear headphones when testing the [Live Demo](https://sharan-s-dev.github.io/blind-walk/) to hear the binaural stereo-panned beacon pings (left ear for left turns, right ear for right turns)!
 ---
 
 ## 🤝 Contributing to Hacktoberfest
