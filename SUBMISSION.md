@@ -44,6 +44,7 @@ I mapped the exact ground-truth features of my campus into a topological spatial
 - **Natural Language Route Planner:** Preset quick-pills (`🌿 2 km Shaded Loop`, `🍂 1.5 km Dirt Trail`, `🏃 800m Fast Walk`, `🌲 3 km Forest Loop`) or voice dictation via Web Speech API.
 - **Live Walk Audio Simulator:** An animated avatar moves along the trail in real time, vocalizing turn-by-turn guidance paced for human walking speed.
 - **Spatial Audio Beacons:** Synthesizes stereo-panned Web Audio API sine tones (left ear for left turns, right ear for right turns).
+- **In-Pocket Haptic Feedback (Web Vibration API):** Phone pulses in your pocket (double-buzz for left turns, sustained buzz for right turns, micro-tick for straight) so you never need to take your phone out or look down at a screen.
 - **One-Click GIS Exports:** Export any calculated route directly to **`.GPX`** (for Garmin watches / OsmAnd) or **GeoJSON** (for QGIS).
 
 ### Experience 2: The AMOLED Zero-Screen Mode
