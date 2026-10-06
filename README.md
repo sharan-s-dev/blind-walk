@@ -70,6 +70,81 @@ For headless single-board computers (Raspberry Pi 4/5) or strict distraction-fre
 
 ---
 
+## 🗺️ Multi-Location Implementations: Flagship Campus & Regional Presets
+
+While **BlindWalk** was born out of personal necessity at my own college campus (**Jain University**), the system was engineered from day one to be completely location-agnostic. The application ships with **5 pre-compiled topological environments** and an integrated **real-time worldwide geocoding engine**:
+
+### 🎓 Primary Flagship Campus: Jain University Global Campus (Kanakapura)
+* **Coordinates:** NH 948, Kanakapura Road, Karnataka (`12.6395° N, 77.4420° E`)
+* **Context:** The creator's home college campus. Ground-truthed node-by-node to solve the everyday challenge of navigating between academic blocks and outer sports facilities under extreme 34°C–36°C midday sun.
+* **Verified Real Ground Landmarks:**
+  * 🏛️ **School of Engineering & Technology (SET Dome):** Central academic landmark with wide radial footpaths.
+  * ⛳ **Jain University Golf Course Shaded Trail:** Shaded dirt path buffering Kanakapura Road traffic.
+  * 🍲 **Campus Central Mess & Shaded Neem Corridor:** High-density neem tree corridor providing over 90% sun protection.
+  * 🏏 **Cricket & Football Grounds:** East athletic enclaves with perimeter dirt walking tracks.
+  * 🏊 **JIRS Swimming Pool & Sports Complex:** Recreational connector trail.
+  * 🛕 **Jain Temple & Spiritual Garden:** Quiet contemplative garden with dense green canopy.
+  * 🏟️ **Colloseum Amphitheater Walk:** Stone promenade overlooking open campus ridges.
+  * 🔬 **Core Block & Aerospace Lab Walk:** West perimeter unpaved trail connecting back to the main arrival gate.
+
+---
+
+### 🏛️ Secondary Preset: Indian Institute of Science (IISc Bangalore)
+* **Coordinates:** Malleshwaram, Bangalore (`13.0219° N, 77.5671° E`)
+* **Context:** India's premier scientific research institute, celebrated for its 400-acre colonial-era green canopy and dense urban forest.
+* **Topological Highlights:**
+  * **Main Building (Faculty Hall):** Historic clock tower and central plaza.
+  * **Gulmohar Marg Canopy Trail:** Dense flowering tree canopy with filtered sunlight.
+  * **Tala Marg Eucalyptus Avenue:** High-shade dirt trail frequented by faculty and student walkers.
+  * **JRD Tata Memorial Library:** Academic center walkway.
+  * **Gymkhana Grounds:** South athletic perimeter path.
+
+---
+
+### 🌿 Regional Preserve 1: Cubbon Park Nature Preserve
+* **Coordinates:** Central Bangalore (`12.9757° N, 77.5929° E`)
+* **Context:** Bangalore's 300-acre historic lung space, popular for early morning sensory walks and low-vision pedestrians.
+* **Topological Highlights:**
+  * **State Central Library (Seshadri Iyer Memorial Hall):** Red brick landmark and western trailhead.
+  * **Bamboo Grove Nature Trail:** Dense bamboo canopy offering near-total sun blockage.
+  * **Bandstand Historic Clearing:** Central circular walking promenade.
+  * **Bal Bhavan Perimeter:** Quiet shaded walkways separated from vehicular noise.
+  * **Queen Victoria Lawn Dirt Track:** Soft unpaved trail designed for joint-friendly walking.
+
+---
+
+### 🌳 Regional Preserve 2: Lalbagh Botanical Garden
+* **Coordinates:** South Bangalore (`12.9507° N, 77.5848° E`)
+* **Context:** World-famous 240-acre botanical enclave housing over 1,800 species of tropical trees, centuries-old bonsai, and wetland wildlife.
+* **Topological Highlights:**
+  * **Lalbagh Glass House Promenade:** Historic 1889 conservatory.
+  * **Bonsai Garden & Ancient Heritage Trees:** Multi-century-old ficus and banyan tree shade.
+  * **Lalbagh Lake Wetlands Boardwalk:** Waterside trail with natural breeze and cooling microclimate.
+  * **Kempegowda Rock Hilltop:** 3,000-million-year-old peninsular gneiss rock ascent.
+
+---
+
+### 🏔️ Mountain Trail Preset: Nandi Hills Hiking Reserve
+* **Coordinates:** Chikkaballapur District, Karnataka (`13.3702° N, 77.6835° E` • Elevation: 1,478m)
+* **Context:** High-altitude ancient hill fortress showcasing BlindWalk's ability to navigate steep elevation gradients, dense pine groves, and off-grid mountain terrain where mobile reception is nonexistent.
+* **Topological Highlights:**
+  * **Tipu Sultan Summer Palace:** Heritage stone starting point.
+  * **Tipu's Drop Cliff Overlook:** Panoramic cliffside trail.
+  * **Amrutha Sarovar Lake Path:** Perennial sacred lake perimeter walk.
+  * **Arkavathi River Origin Pine Trail:** Dense misty pine forest trail with 95% canopy density.
+  * **Yoga Nandeeshwara Temple Ridge:** Stone stairs and ridgeline descent.
+
+---
+
+### 🌍 Dynamic Worldwide Geocoding: Search Any Location on Earth
+BlindWalk is not restricted to pre-packaged coordinates. The integrated **OpenStreetMap Nominatim search engine** allows walkers to enter **any location worldwide**:
+1. Enter any query (e.g., *"Central Park New York"*, *"Hyde Park London"*, *"Lodhi Garden Delhi"*).
+2. The search engine resolves exact latitude/longitude coordinates via OpenStreetMap Nominatim.
+3. BlindWalk automatically pans the high-resolution satellite map to the target coordinates.
+4. The spatial engine dynamically generates an intelligent, localized pedestrian loop with varied terrain, calculates turn-by-turn steps, and begins voice and haptic guidance instantly.
+
+---
+
 ## 🏗️ Architecture Under the Hood
 
 ```mermaid

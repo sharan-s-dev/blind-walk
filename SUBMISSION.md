@@ -103,11 +103,17 @@ BlindWalk unites local open-weight AI inference with deterministic GIS graph alg
 - **Deterministic Offline Fallback:** If running on low-power devices without GPU acceleration, a deterministic topological synthesizer takes over seamlessly so navigation never fails.
 
 ### 2. Offline Spatial Topology Engine (OSMnx & NetworkX)
-- Pre-cached OpenStreetMap spatial data for **Jain University Global Campus (Kanakapura, Karnataka, India)**:
+- **Flagship Ground Truth:** Pre-cached OpenStreetMap spatial data for **Jain University Global Campus (Kanakapura, Karnataka, India)**:
   - Center: `12.6395°N, 77.4420°E`
   - Bounding Box: `12.6335°N to 12.6445°N`, `77.4360°E to 77.4475°E`.
   - Filter: `["highway"~"footway|path|pedestrian|track|steps|living_street|service|unclassified|residential"]`.
-- Multi-location presets for **IISc Bangalore**, **Cubbon Park**, **Lalbagh Botanical Garden**, and **Nandi Hills**, plus dynamic on-the-fly worldwide OpenStreetMap geocoding synthesis.
+  - Mapped Landmarks: SET Dome, Golf Course Trail, Mess Neem Corridor, Cricket & Football Grounds, Jain Temple, Colloseum Amphitheater, and Aerospace Lab.
+- **Regional Presets Included:**
+  - 🏛️ **IISc Bangalore Campus** (Faculty Hall, Tala Marg, Gulmohar canopy trail)
+  - 🌿 **Cubbon Park Nature Preserve** (Bamboo Grove, Bandstand, Victoria lawn dirt track)
+  - 🌳 **Lalbagh Botanical Garden** (Glass House, Lake wetlands, ancient heritage trees)
+  - 🏔️ **Nandi Hills Hiking Reserve** (1,478m elevation, Arkavathi pine trail, Amrutha Sarovar)
+- **Worldwide Dynamic Geocoding:** Built-in OpenStreetMap Nominatim search engine to query and synthesize localized pedestrian loops for any city, university, or park on Earth.
 - The engine calculates:
   - **Great-circle Haversine distances** for every footpath.
   - **Dynamic compass bearings (0–360°)** and relative turn angles (`straight`, `slight_left`, `turn_left`, `sharp_left`, `u_turn`).
