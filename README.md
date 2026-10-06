@@ -27,7 +27,10 @@ Whenever I tried navigating cross-campus, two major problems emerged:
 
 ## 🌟 What You Can Do (Live Features)
 
-### 1. Interactive Web Cockpit (`http://localhost:8000`)
+🌐 **Live Deployed Web App:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/)  
+*(Open in any browser — zero installation needed to test the map & audio navigation)*
+
+### 1. Interactive Web Cockpit (`http://localhost:8000` or Live URL)
 - **Real Campus Topology:** Centered on Jain Global Campus (Kanakapura, Karnataka) with pedestrian footpaths, perimeter dirt tracks, and shaded groves rendered on top of Dark Matter, Satellite, or Topo layers.
 - **Natural Language Route Queries:** Type custom constraints or click presets like:
   - 🌿 *2 km Shaded Loop (Maximizes Neem Tree Canopy)*

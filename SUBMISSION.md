@@ -26,9 +26,12 @@ Instead of showing a turn on a phone screen, BlindWalk:
 
 ## Demo
 
+🌐 **Live Deployed Web App:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/)  
+*(Works on any desktop/mobile browser with offline Web Speech & spatial audio beacons)*
+
 ![BlindWalk Interactive Spatial UI Preview](web/preview.jpg)
 
-### Experience 1: The Interactive Web Cockpit (`http://localhost:8000`)
+### Experience 1: The Interactive Web Cockpit
 - **Interactive Topography Map:** Explores real pedestrian trails, perimeter dirt paths, and tree groves across the Jain Global Campus with Dark Matter, Satellite, and Topo layers.
 - **Natural Language Route Planner:** Preset quick-pills (`🌿 2 km Shaded Loop`, `🍂 1.5 km Dirt Trail`, `🏃 800m Fast Walk`, `🌲 3 km Forest Loop`) or voice dictation via Web Speech API.
 - **Live Walk Audio Simulator:** An animated avatar moves along the trail in real time, vocalizing turn-by-turn guidance paced for human walking speed.
