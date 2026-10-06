@@ -1,7 +1,7 @@
 # BlindWalk 🌿
 BlindWalk: Zero-Screen Pedestrian Navigation Using Local Open-Weight AI and Directional Audio Beacons
 
-[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-202026-blueviolet?style=flat-square&logo=hacktoberfest)](https://hacktoberfest.com/)
+[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-%202026-blueviolet?style=flat-square&logo=hacktoberfest)](https://hacktoberfest.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=flat-square)](LICENSE)
 [![Python: 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg?style=flat-square&logo=python)](https://python.org)
 [![Air-Gapped: 100% Local](https://img.shields.io/badge/Air--Gapped-100%25%20Localhost-success?style=flat-square)](https://github.com/)
