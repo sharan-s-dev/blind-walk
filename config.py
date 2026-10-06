@@ -15,16 +15,57 @@ GRAPH_FILENAME = "campus_grid.graphml"
 DEFAULT_GRAPH_PATH = DATA_DIR / GRAPH_FILENAME
 FALLBACK_GRAPH_PATH = BASE_DIR / GRAPH_FILENAME
 
-# Target Geographic Location: Jain University Kanakapura Global Campus, Karnataka, India
-# Topography: Campus grounds, forest tracts, pedestrian paths, dirt roads
+# Verified Coordinates: Jain University Global Campus (Kanakapura Road, Karnataka)
+# Matching the official grounds: Golf Course, Cricket Ground, SET Dome, Core Block, Colloseum
 JAIN_UNIVERSITY_COORDS = {
-    "center_lat": 12.6568,
-    "center_lon": 77.4428,
-    "north": 12.6680,
-    "south": 12.6450,
-    "east": 77.4580,
-    "west": 77.4280,
-    "buffer_dist_m": 1200,  # Buffer radius in meters
+    "center_lat": 12.6395,
+    "center_lon": 77.4420,
+    "north": 12.6445,
+    "south": 12.6335,
+    "east": 77.4475,
+    "west": 77.4360,
+    "buffer_dist_m": 1200,
+}
+
+# Multi-Campus & Park Presets
+LOCATION_PRESETS = {
+    "jain": JAIN_UNIVERSITY_COORDS,
+    "iisc": {
+        "name": "IISc Bangalore Campus",
+        "center_lat": 13.0219,
+        "center_lon": 77.5671,
+        "north": 13.0300,
+        "south": 13.0140,
+        "east": 77.5750,
+        "west": 77.5600,
+    },
+    "cubbon": {
+        "name": "Cubbon Park Nature Preserve",
+        "center_lat": 12.9763,
+        "center_lon": 77.5929,
+        "north": 12.9840,
+        "south": 12.9690,
+        "east": 77.6000,
+        "west": 77.5860,
+    },
+    "lalbagh": {
+        "name": "Lalbagh Botanical Garden",
+        "center_lat": 12.9507,
+        "center_lon": 77.5848,
+        "north": 12.9580,
+        "south": 12.9430,
+        "east": 77.5920,
+        "west": 77.5770,
+    },
+    "nandi": {
+        "name": "Nandi Hills Hiking Reserve",
+        "center_lat": 13.3702,
+        "center_lon": 77.6835,
+        "north": 13.3780,
+        "south": 13.3630,
+        "east": 77.6910,
+        "west": 77.6760,
+    }
 }
 
 # Network Filter for Pedestrian Paths, Trails, Dirt Roads & Natural Enclaves

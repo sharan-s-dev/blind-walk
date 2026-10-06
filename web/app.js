@@ -12,34 +12,206 @@
  */
 
 // ============================================================================
-// 1. Campus Spatial Topography (Jain University Global Campus, Kanakapura)
+// 1. Multi-Location Presets & Spatial Topography
 // ============================================================================
-const JAIN_CAMPUS_DATA = {
-  center: [12.6568, 77.4428],
-  zoom: 16,
-  nodes: {
-    101: { id: 101, name: "Campus South Gate (Arrival)", lat: 12.6538, lon: 77.4428, elev: 719, type: "gate" },
-    102: { id: 102, name: "Academic Central Quad", lat: 12.6558, lon: 77.4428, elev: 722, type: "quad" },
-    103: { id: 103, name: "Library Neem Canopy Walk", lat: 12.6568, lon: 77.4413, elev: 724, type: "shade" },
-    104: { id: 104, name: "Herbal Forest West Gate", lat: 12.6583, lon: 77.4403, elev: 728, type: "forest" },
-    105: { id: 105, name: "Dense Eucalyptus Grove North", lat: 12.6603, lon: 77.4418, elev: 732, type: "forest" },
-    106: { id: 106, name: "Rainwater Lake Overlook Trail", lat: 12.6598, lon: 77.4448, elev: 725, type: "lake" },
-    107: { id: 107, name: "East Perimeter Dirt Track", lat: 12.6578, lon: 77.4458, elev: 721, type: "dirt" },
-    108: { id: 108, name: "Sports Ground Shaded Pathway", lat: 12.6553, lon: 77.4443, elev: 720, type: "sports" }
+const PRESET_LOCATIONS = {
+  jain: {
+    name: "Jain Global Campus (Kanakapura)",
+    center: [12.6395, 77.4420],
+    zoom: 17,
+    nodes: {
+      101: { id: 101, name: "Campus Arrival Gate (off Kanakapura Rd)", lat: 12.6418, lon: 77.4372, elev: 720, type: "gate" },
+      102: { id: 102, name: "Jain University Golf Course Trail", lat: 12.6412, lon: 77.4387, elev: 722, type: "shade" },
+      103: { id: 103, name: "School of Engineering (SET Dome)", lat: 12.6417, lon: 77.4405, elev: 724, type: "quad" },
+      104: { id: 104, name: "Campus Mess & Shaded Neem Walk", lat: 12.6409, lon: 77.4409, elev: 723, type: "shade" },
+      105: { id: 105, name: "Jain University Football Ground", lat: 12.6396, lon: 77.4416, elev: 722, type: "sports" },
+      106: { id: 106, name: "Jain University Cricket Ground", lat: 12.6401, lon: 77.4449, elev: 725, type: "sports" },
+      107: { id: 107, name: "JIRS Swimming Pool & Sports Complex", lat: 12.6409, lon: 77.4445, elev: 726, type: "sports" },
+      108: { id: 108, name: "Jain Temple & Spiritual Garden", lat: 12.6382, lon: 77.4435, elev: 721, type: "forest" },
+      109: { id: 109, name: "Colloseum Amphitheater Trail", lat: 12.6377, lon: 77.4431, elev: 720, type: "quad" },
+      110: { id: 110, name: "Core Block & Aerospace Lab Walk", lat: 12.6384, lon: 77.4402, elev: 719, type: "dirt" }
+    },
+    edges: [
+      { u: 101, v: 102, name: "Golf Course Shaded Trail", surface: "dirt_trail", canopy: 0.85, dist: 220 },
+      { u: 102, v: 103, name: "Engineering Block Boulevard", surface: "pedestrian_walkway", canopy: 0.45, dist: 210 },
+      { u: 103, v: 104, name: "Central Quad Neem Corridor", surface: "pedestrian_walkway", canopy: 0.70, dist: 100 },
+      { u: 104, v: 105, name: "Football Ground Tree Perimeter", surface: "dirt_trail", canopy: 0.75, dist: 165 },
+      { u: 105, v: 106, name: "East Sports Complex Link Trail", surface: "dirt_trail", canopy: 0.80, dist: 360 },
+      { u: 106, v: 107, name: "Cricket Ground Perimeter Walk", surface: "dirt_trail", canopy: 0.70, dist: 100 },
+      { u: 107, v: 108, name: "Temple Garden Shaded Avenue", surface: "dirt_trail", canopy: 0.90, dist: 320 },
+      { u: 108, v: 109, name: "Colloseum Ridge Walkway", surface: "pedestrian_walkway", canopy: 0.65, dist: 70 },
+      { u: 109, v: 110, name: "Aerospace Lab Boundary Trail", surface: "dirt_trail", canopy: 0.85, dist: 325 },
+      { u: 110, v: 101, name: "West Perimeter Dirt Road", surface: "dirt_trail", canopy: 0.75, dist: 490 },
+      { u: 103, v: 110, name: "Academic Cross Campus Pathway", surface: "pedestrian_walkway", canopy: 0.50, dist: 365 },
+      { u: 104, v: 108, name: "Spiritual Centre Shaded Cut", surface: "dirt_trail", canopy: 0.80, dist: 410 }
+    ],
+    candidateLoops: [
+      [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 101],
+      [103, 104, 105, 106, 107, 108, 109, 110, 103],
+      [101, 102, 103, 110, 101],
+      [103, 104, 105, 104, 103]
+    ]
   },
-  edges: [
-    { u: 101, v: 102, name: "Main Entrance Walkway", surface: "pedestrian_walkway", canopy: 0.35, dist: 222 },
-    { u: 102, v: 103, name: "Neem Grove Path", surface: "dirt_trail", canopy: 0.85, dist: 197 },
-    { u: 103, v: 104, name: "Herbal Forest Boundary Trail", surface: "dirt_trail", canopy: 0.95, dist: 199 },
-    { u: 104, v: 105, name: "North Hill Eucalyptus Ridgeline", surface: "dirt_trail", canopy: 0.90, dist: 275 },
-    { u: 105, v: 106, name: "Lake Descent Ridge", surface: "dirt_trail", canopy: 0.75, dist: 330 },
-    { u: 106, v: 107, name: "East Lake Perimeter Dirt Road", surface: "dirt_trail", canopy: 0.70, dist: 247 },
-    { u: 107, v: 108, name: "East Tree Boundary Walk", surface: "dirt_trail", canopy: 0.65, dist: 322 },
-    { u: 108, v: 101, name: "Sports Pavilion Corridor", surface: "pedestrian_walkway", canopy: 0.40, dist: 233 },
-    { u: 102, v: 108, name: "Central Cross Campus Walkway", surface: "pedestrian_walkway", canopy: 0.50, dist: 175 },
-    { u: 103, v: 106, name: "Botanical Cross Cut Trail", surface: "dirt_trail", canopy: 0.80, dist: 390 }
-  ]
+  iisc: {
+    name: "Indian Institute of Science (IISc Bangalore)",
+    center: [13.0219, 77.5671],
+    zoom: 16,
+    nodes: {
+      201: { id: 201, name: "Main Building (Faculty Hall)", lat: 13.0205, lon: 77.5683, elev: 934, type: "quad" },
+      202: { id: 202, name: "Gulmohar Marg Canopy Trail", lat: 13.0225, lon: 77.5685, elev: 935, type: "shade" },
+      203: { id: 203, name: "Centenary Visitors House (CVH)", lat: 13.0252, lon: 77.5695, elev: 936, type: "shade" },
+      204: { id: 204, name: "Tala Marg Eucalyptus Avenue", lat: 13.0248, lon: 77.5662, elev: 938, type: "forest" },
+      205: { id: 205, name: "JRD Tata Memorial Library", lat: 13.0218, lon: 77.5658, elev: 937, type: "quad" },
+      206: { id: 206, name: "Gymkhana Grounds Track", lat: 13.0188, lon: 77.5670, elev: 933, type: "sports" }
+    },
+    edges: [
+      { u: 201, v: 202, name: "Faculty Avenue", surface: "pedestrian_walkway", canopy: 0.90, dist: 230 },
+      { u: 202, v: 203, name: "Gulmohar Forest Path", surface: "dirt_trail", canopy: 0.95, dist: 320 },
+      { u: 203, v: 204, name: "North Perimeter Canopy Road", surface: "dirt_trail", canopy: 0.90, dist: 380 },
+      { u: 204, v: 205, name: "Tala Marg Canopy Walk", surface: "dirt_trail", canopy: 0.88, dist: 340 },
+      { u: 205, v: 206, name: "Library to Gymkhana Cut", surface: "dirt_trail", canopy: 0.85, dist: 360 },
+      { u: 206, v: 201, name: "Gymkhana South Return", surface: "pedestrian_walkway", canopy: 0.80, dist: 240 }
+    ],
+    candidateLoops: [
+      [201, 202, 203, 204, 205, 206, 201],
+      [201, 202, 205, 206, 201]
+    ]
+  },
+  cubbon: {
+    name: "Cubbon Park Nature Preserve (Bangalore)",
+    center: [12.9757, 77.5929],
+    zoom: 16,
+    nodes: {
+      301: { id: 301, name: "State Central Library (Red Building)", lat: 12.9768, lon: 77.5902, elev: 920, type: "quad" },
+      302: { id: 302, name: "Bamboo Grove Nature Trail", lat: 12.9782, lon: 77.5925, elev: 922, type: "forest" },
+      303: { id: 303, name: "Bandstand Historic Clearing", lat: 12.9752, lon: 77.5935, elev: 919, type: "shade" },
+      304: { id: 304, name: "Bal Bhavan Shaded Perimeter", lat: 12.9730, lon: 77.5950, elev: 917, type: "shade" },
+      305: { id: 305, name: "Queen Victoria Pavilion Dirt Track", lat: 12.9740, lon: 77.5915, elev: 918, type: "dirt" }
+    },
+    edges: [
+      { u: 301, v: 302, name: "Library North Bamboo Trail", surface: "dirt_trail", canopy: 0.95, dist: 310 },
+      { u: 302, v: 303, name: "Central Arboretum Walk", surface: "dirt_trail", canopy: 0.92, dist: 350 },
+      { u: 303, v: 304, name: "Bandstand South Boulevard", surface: "pedestrian_walkway", canopy: 0.85, dist: 300 },
+      { u: 304, v: 305, name: "Lotus Pond Shaded Path", surface: "dirt_trail", canopy: 0.90, dist: 410 },
+      { u: 305, v: 301, name: "Victoria Lawn West Path", surface: "pedestrian_walkway", canopy: 0.88, dist: 340 }
+    ],
+    candidateLoops: [
+      [301, 302, 303, 304, 305, 301]
+    ]
+  },
+  lalbagh: {
+    name: "Lalbagh Botanical Garden (Bangalore)",
+    center: [12.9507, 77.5848],
+    zoom: 16,
+    nodes: {
+      401: { id: 401, name: "Lalbagh Glass House", lat: 12.9515, lon: 77.5852, elev: 910, type: "quad" },
+      402: { id: 402, name: "Bonsai Garden & Ancient Trees", lat: 12.9530, lon: 77.5870, elev: 912, type: "shade" },
+      403: { id: 403, name: "Lalbagh Lake Wetlands Trail", lat: 12.9475, lon: 77.5880, elev: 905, type: "lake" },
+      404: { id: 404, name: "Kempegowda Rock Hilltop", lat: 12.9460, lon: 77.5845, elev: 925, type: "forest" },
+      405: { id: 405, name: "West Gate Rose Walk", lat: 12.9490, lon: 77.5820, elev: 908, type: "shade" }
+    },
+    edges: [
+      { u: 401, v: 402, name: "Glass House East Promenade", surface: "pedestrian_walkway", canopy: 0.85, dist: 260 },
+      { u: 402, v: 403, name: "Lake Descent Shaded Trail", surface: "dirt_trail", canopy: 0.90, dist: 620 },
+      { u: 403, v: 404, name: "Wetlands Boardwalk & Rocky Footpath", surface: "dirt_trail", canopy: 0.80, dist: 430 },
+      { u: 404, v: 405, name: "Hilltop Shaded Ridge Path", surface: "dirt_trail", canopy: 0.88, dist: 420 },
+      { u: 405, v: 401, name: "Lotus Pond Walkway", surface: "pedestrian_walkway", canopy: 0.82, dist: 450 }
+    ],
+    candidateLoops: [
+      [401, 402, 403, 404, 405, 401]
+    ]
+  },
+  nandi: {
+    name: "Nandi Hills Hiking Reserve",
+    center: [13.3702, 77.6835],
+    zoom: 16,
+    nodes: {
+      501: { id: 501, name: "Tipu Sultan Summer Palace", lat: 13.3708, lon: 77.6830, elev: 1478, type: "quad" },
+      502: { id: 502, name: "Tipu's Drop Cliff Overlook", lat: 13.3725, lon: 77.6852, elev: 1475, type: "shade" },
+      503: { id: 503, name: "Amrutha Sarovar Lake Path", lat: 13.3695, lon: 77.6855, elev: 1460, type: "lake" },
+      504: { id: 504, name: "Arkavathi River Origin Pine Trail", lat: 13.3670, lon: 77.6820, elev: 1465, type: "forest" },
+      505: { id: 505, name: "Yoga Nandeeshwara Temple Ridge", lat: 13.3690, lon: 77.6805, elev: 1470, type: "dirt" }
+    },
+    edges: [
+      { u: 501, v: 502, name: "Cliffside Stone Walkway", surface: "pedestrian_walkway", canopy: 0.70, dist: 310 },
+      { u: 502, v: 503, name: "Eastern Ridge Pine Descent", surface: "dirt_trail", canopy: 0.85, dist: 340 },
+      { u: 503, v: 504, name: "Sacred Lake Perimeter Path", surface: "dirt_trail", canopy: 0.90, dist: 450 },
+      { u: 504, v: 505, name: "Forest Trail to Temple", surface: "dirt_trail", canopy: 0.95, dist: 330 },
+      { u: 505, v: 501, name: "Temple Garden Ascent Path", surface: "pedestrian_walkway", canopy: 0.75, dist: 320 }
+    ],
+    candidateLoops: [
+      [501, 502, 503, 504, 505, 501]
+    ]
+  }
 };
+
+let activeLocationKey = "jain";
+let ACTIVE_LOCATION_DATA = PRESET_LOCATIONS.jain;
+
+/**
+ * Dynamically synthesizes a localized pedestrian spatial topology
+ * for any searched city or landmark worldwide.
+ */
+function generateDynamicLocationData(name, centerLat, centerLon) {
+  const bearings = [0, 60, 120, 180, 240, 300];
+  const nodeNames = [
+    `${name} - North Shaded Promenade`,
+    `${name} - East Perimeter Path`,
+    `${name} - South Garden Footpath`,
+    `${name} - South-West Tree Canopy Walk`,
+    `${name} - West Dirt Ridge`,
+    `${name} - North-West Arrival Plaza`
+  ];
+  const nodeTypes = ["quad", "shade", "dirt", "forest", "shade", "gate"];
+
+  const nodes = {};
+  const metersPerDegLat = 111320;
+  const metersPerDegLon = 111320 * Math.cos((centerLat * Math.PI) / 180);
+
+  bearings.forEach((deg, idx) => {
+    const id = 901 + idx;
+    const rad = (deg * Math.PI) / 180;
+    const radiusMeters = 240 + (idx % 3) * 60;
+    const dLat = (radiusMeters * Math.cos(rad)) / metersPerDegLat;
+    const dLon = (radiusMeters * Math.sin(rad)) / metersPerDegLon;
+
+    nodes[id] = {
+      id: id,
+      name: nodeNames[idx],
+      lat: centerLat + dLat,
+      lon: centerLon + dLon,
+      elev: Math.round(500 + Math.sin(idx) * 20),
+      type: nodeTypes[idx]
+    };
+  });
+
+  const edges = [
+    { u: 901, v: 902, name: `${name} East Link`, surface: "pedestrian_walkway", canopy: 0.80, dist: 280 },
+    { u: 902, v: 903, name: `${name} South-East Boulevard`, surface: "dirt_trail", canopy: 0.85, dist: 310 },
+    { u: 903, v: 904, name: `${name} Southern Forest Cut`, surface: "dirt_trail", canopy: 0.90, dist: 290 },
+    { u: 904, v: 905, name: `${name} West Canopy Trail`, surface: "dirt_trail", canopy: 0.88, dist: 300 },
+    { u: 905, v: 906, name: `${name} North-West Promenade`, surface: "pedestrian_walkway", canopy: 0.75, dist: 270 },
+    { u: 906, v: 901, name: `${name} North Arrival Loop`, surface: "pedestrian_walkway", canopy: 0.82, dist: 290 },
+    { u: 901, v: 904, name: `${name} Central Cross-Cut`, surface: "dirt_trail", canopy: 0.85, dist: 520 },
+    { u: 902, v: 905, name: `${name} Transverse Shaded Avenue`, surface: "pedestrian_walkway", canopy: 0.70, dist: 540 }
+  ];
+
+  const candidateLoops = [
+    [901, 902, 903, 904, 905, 906, 901],
+    [901, 902, 905, 906, 901],
+    [901, 904, 905, 906, 901],
+    [901, 902, 903, 904, 901]
+  ];
+
+  return {
+    name: name,
+    center: [centerLat, centerLon],
+    zoom: 16,
+    nodes: nodes,
+    edges: edges,
+    candidateLoops: candidateLoops
+  };
+}
 
 // ============================================================================
 // 2. Application State & Settings
@@ -47,6 +219,7 @@ const JAIN_CAMPUS_DATA = {
 const state = {
   map: null,
   tileLayer: null,
+  topographyLayers: [],
   activeRoute: null,
   activeStepIndex: 0,
   simulating: false,
@@ -237,6 +410,7 @@ function updateSpeechUI(isSpeaking) {
 // 5. Dynamic Spatial Graph Pathfinding Algorithm
 // ============================================================================
 function computeDynamicRoute(query) {
+  const data = ACTIVE_LOCATION_DATA;
   const q = query.toLowerCase();
 
   // Extract requested distance
@@ -249,13 +423,13 @@ function computeDynamicRoute(query) {
   const preferCanopy = q.includes("canopy") || q.includes("shade") || q.includes("tree") || q.includes("forest");
   const preferDirt = q.includes("dirt") || q.includes("trail") || q.includes("track");
 
-  // Build Adjacency Graph from JAIN_CAMPUS_DATA
+  // Build Adjacency Graph from active location data
   const adj = {};
-  Object.keys(JAIN_CAMPUS_DATA.nodes).forEach(id => {
+  Object.keys(data.nodes).forEach(id => {
     adj[id] = [];
   });
 
-  JAIN_CAMPUS_DATA.edges.forEach(e => {
+  data.edges.forEach(e => {
     let weight = e.dist;
     if (preferCanopy) weight = weight / (0.2 + e.canopy * 1.8);
     if (preferDirt && e.surface.includes("dirt")) weight = weight * 0.6;
@@ -265,26 +439,18 @@ function computeDynamicRoute(query) {
   });
 
   // Cycle basis loop selection matching target distance
-  let bestLoop = null;
-  let bestDiff = Infinity;
+  const candidateLoops = data.candidateLoops && data.candidateLoops.length > 0
+    ? data.candidateLoops
+    : [Object.keys(data.nodes).map(Number).concat([Number(Object.keys(data.nodes)[0])])];
 
-  // Candidate loop paths tailored to distances
-  const candidateLoops = [
-    // 1. Short Quad Loop (~600m - 800m)
-    [101, 102, 108, 101],
-    // 2. Library & Quad Shaded Loop (~1.1 km - 1.3 km)
-    [101, 102, 103, 106, 107, 108, 101],
-    // 3. Complete Shaded Perimeter Loop (~2.0 km)
-    [101, 102, 103, 104, 105, 106, 107, 108, 101],
-    // 4. Deep Forest Ridge Extended Loop (~2.8 km)
-    [101, 102, 103, 104, 105, 106, 103, 104, 105, 106, 107, 108, 101]
-  ];
+  let bestLoop = candidateLoops[0];
+  let bestDiff = Infinity;
 
   for (const loop of candidateLoops) {
     let loopDist = 0;
     for (let i = 0; i < loop.length - 1; i++) {
       const u = loop[i], v = loop[i+1];
-      const edge = JAIN_CAMPUS_DATA.edges.find(e => (e.u === u && e.v === v) || (e.u === v && e.v === u));
+      const edge = data.edges.find(e => (e.u === u && e.v === v) || (e.u === v && e.v === u));
       loopDist += edge ? edge.dist : 200;
     }
     const diff = Math.abs(loopDist - targetMeters);
@@ -294,7 +460,7 @@ function computeDynamicRoute(query) {
     }
   }
 
-  const selectedPath = bestLoop || candidateLoops[2];
+  const selectedPath = bestLoop || candidateLoops[0];
 
   // Convert Node Sequence into Navigational Step Objects
   const steps = [];
@@ -304,10 +470,12 @@ function computeDynamicRoute(query) {
   for (let i = 0; i < selectedPath.length - 1; i++) {
     const uId = selectedPath[i];
     const vId = selectedPath[i+1];
-    const uNode = JAIN_CAMPUS_DATA.nodes[uId];
-    const vNode = JAIN_CAMPUS_DATA.nodes[vId];
-    const edge = JAIN_CAMPUS_DATA.edges.find(e => (e.u === uId && e.v === vId) || (e.u === vId && e.v === uId)) || {
-      dist: 200, name: "Campus Path", surface: "dirt_trail", canopy: 0.7
+    const uNode = data.nodes[uId];
+    const vNode = data.nodes[vId];
+    if (!uNode || !vNode) continue;
+
+    const edge = data.edges.find(e => (e.u === uId && e.v === vId) || (e.u === vId && e.v === uId)) || {
+      dist: 200, name: "Walking Path", surface: "dirt_trail", canopy: 0.7
     };
 
     totalDist += edge.dist;
@@ -324,7 +492,7 @@ function computeDynamicRoute(query) {
     prevBearing = bearing;
 
     const surfaceName = edge.surface.replace(/_/g, " ");
-    const canopyDesc = edge.canopy >= 0.8 ? "dense neem shade" : (edge.canopy >= 0.5 ? "moderate tree shade" : "open sky");
+    const canopyDesc = edge.canopy >= 0.8 ? "dense shade" : (edge.canopy >= 0.5 ? "moderate tree canopy" : "open sky");
     const turnPhrase = turn === "turn_right" ? "Turn right" : (turn === "turn_left" ? "Turn left" : "Continue straight");
 
     steps.push({
@@ -342,11 +510,12 @@ function computeDynamicRoute(query) {
   }
 
   const avgCanopy = Math.round(
-    steps.reduce((acc, s) => acc + (s.canopy === "dense" ? 90 : 65), 0) / steps.length
+    steps.reduce((acc, s) => acc + (s.canopy === "dense" ? 90 : 65), 0) / Math.max(1, steps.length)
   );
 
   return {
     query,
+    location_name: data.name,
     total_distance_m: totalDist,
     target_distance_m: targetMeters,
     canopy_score_pct: avgCanopy,
@@ -426,8 +595,8 @@ function initMap() {
   if (!mapElement) return;
 
   state.map = L.map("campusMap", {
-    center: JAIN_CAMPUS_DATA.center,
-    zoom: JAIN_CAMPUS_DATA.zoom,
+    center: ACTIVE_LOCATION_DATA.center,
+    zoom: ACTIVE_LOCATION_DATA.zoom,
     zoomControl: false,
   });
 
@@ -442,23 +611,34 @@ function initMap() {
   renderCampusTopography();
 }
 
+function clearCampusTopography() {
+  if (!state.map) return;
+  if (state.topographyLayers && state.topographyLayers.length > 0) {
+    state.topographyLayers.forEach(l => state.map.removeLayer(l));
+  }
+  state.topographyLayers = [];
+}
+
 function renderCampusTopography() {
   if (!state.map) return;
+  clearCampusTopography();
 
-  JAIN_CAMPUS_DATA.edges.forEach(edge => {
-    const u = JAIN_CAMPUS_DATA.nodes[edge.u];
-    const v = JAIN_CAMPUS_DATA.nodes[edge.v];
+  ACTIVE_LOCATION_DATA.edges.forEach(edge => {
+    const u = ACTIVE_LOCATION_DATA.nodes[edge.u];
+    const v = ACTIVE_LOCATION_DATA.nodes[edge.v];
+    if (!u || !v) return;
     const isDirt = edge.surface.includes("dirt");
 
-    L.polyline([[u.lat, u.lon], [v.lat, v.lon]], {
+    const line = L.polyline([[u.lat, u.lon], [v.lat, v.lon]], {
       color: isDirt ? "#f59e0b" : "#38bdf8",
       weight: isDirt ? 3.5 : 3,
       dashArray: isDirt ? "6, 6" : null,
       opacity: 0.85
     }).addTo(state.map).bindTooltip(`${edge.name} (${edge.surface.replace(/_/g, ' ')})`);
+    state.topographyLayers.push(line);
   });
 
-  Object.values(JAIN_CAMPUS_DATA.nodes).forEach(node => {
+  Object.values(ACTIVE_LOCATION_DATA.nodes).forEach(node => {
     const isForest = node.type === "forest" || node.type === "shade";
     const marker = L.circleMarker([node.lat, node.lon], {
       radius: isForest ? 6.5 : 5.5,
@@ -469,6 +649,7 @@ function renderCampusTopography() {
     }).addTo(state.map);
 
     marker.bindPopup(`<b>${node.name}</b><br>Elevation: ${node.elev}m`);
+    state.topographyLayers.push(marker);
   });
 }
 
@@ -505,10 +686,14 @@ function calculateRoute(query) {
   fetch("/api/route", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: query })
+    body: JSON.stringify({ query: query, location: activeLocationKey })
   })
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error("API not ok");
+    return res.json();
+  })
   .then(data => {
+    if (!data.steps || data.steps.length === 0) throw new Error("Empty steps");
     applyRouteData(data);
   })
   .catch(() => {
@@ -572,8 +757,9 @@ function applyRouteData(routeData) {
   updateHUD(routeData.steps[0]);
 
   // Vocalize introductory overview
+  const locName = routeData.location_name || ACTIVE_LOCATION_DATA.name || "campus";
   audioSynth.speak(
-    `Route calculated for Jain University Kanakapura campus. Total distance is ${km} kilometers across ${routeData.steps.length} waypoints, with maximum tree canopy exposure.`
+    `Route calculated for ${locName}. Total distance is ${km} kilometers across ${routeData.steps.length} waypoints, with maximum tree canopy exposure.`
   );
 }
 
@@ -834,12 +1020,117 @@ function initVoiceInput() {
 }
 
 // ============================================================================
-// 14. Event Listeners & Bootstrapping
+// 14. Location Preset Switching & Global Map Geocoding
+// ============================================================================
+function switchLocationPreset(key) {
+  if (!PRESET_LOCATIONS[key]) return;
+  activeLocationKey = key;
+  ACTIVE_LOCATION_DATA = PRESET_LOCATIONS[key];
+
+  if (state.map) {
+    state.map.setView(ACTIVE_LOCATION_DATA.center, ACTIVE_LOCATION_DATA.zoom);
+    renderCampusTopography();
+  }
+
+  const promptInput = document.getElementById("promptInput");
+  const query = promptInput ? promptInput.value.trim() : "Calculate a 2-kilometer loop maximizing tree canopy exposure";
+  calculateRoute(query || "Calculate a 2-kilometer loop maximizing tree canopy exposure");
+
+  audioSynth.speak(`Switched location to ${ACTIVE_LOCATION_DATA.name}. Calculating optimal walking route.`);
+}
+
+async function searchLocation(query) {
+  if (!query || !query.trim()) return;
+  const cleanQuery = query.trim();
+  const searchBtn = document.getElementById("mapSearchBtn");
+  if (searchBtn) {
+    searchBtn.disabled = true;
+    searchBtn.style.opacity = "0.5";
+  }
+
+  try {
+    const resp = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cleanQuery)}&limit=1`,
+      { headers: { "Accept-Language": "en" } }
+    );
+    const data = await resp.json();
+    if (!data || data.length === 0) {
+      alert(`Location "${cleanQuery}" not found on OpenStreetMap. Please try another place or city name.`);
+      return;
+    }
+
+    const item = data[0];
+    const lat = parseFloat(item.lat);
+    const lon = parseFloat(item.lon);
+    const displayName = item.display_name.split(",").slice(0, 2).join(",");
+
+    const customData = generateDynamicLocationData(displayName, lat, lon);
+    PRESET_LOCATIONS["custom"] = customData;
+    activeLocationKey = "custom";
+    ACTIVE_LOCATION_DATA = customData;
+
+    const select = document.getElementById("locationPresetSelect");
+    if (select) {
+      let customOpt = select.querySelector('option[value="custom"]');
+      if (!customOpt) {
+        customOpt = document.createElement("option");
+        customOpt.value = "custom";
+        select.appendChild(customOpt);
+      }
+      customOpt.textContent = `📍 ${displayName}`;
+      select.value = "custom";
+    }
+
+    if (state.map) {
+      state.map.setView([lat, lon], 16);
+      renderCampusTopography();
+    }
+
+    const promptInput = document.getElementById("promptInput");
+    const currentQuery = promptInput ? promptInput.value.trim() : "Calculate a 2-kilometer loop maximizing tree canopy exposure";
+    calculateRoute(currentQuery || "Calculate a 2-kilometer loop maximizing tree canopy exposure");
+
+    audioSynth.speak(`Location updated to ${displayName}. Calculating local pedestrian loop.`);
+  } catch (err) {
+    console.error("Geocoding failed:", err);
+    alert("Geocoding network error. Please check your internet connection.");
+  } finally {
+    if (searchBtn) {
+      searchBtn.disabled = false;
+      searchBtn.style.opacity = "1";
+    }
+  }
+}
+
+// ============================================================================
+// 15. Event Listeners & Bootstrapping
 // ============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   initMap();
   initVisualizers();
   initVoiceInput();
+
+  // Location Preset & Global Search listeners
+  const presetSelect = document.getElementById("locationPresetSelect");
+  if (presetSelect) {
+    presetSelect.addEventListener("change", (e) => {
+      switchLocationPreset(e.target.value);
+    });
+  }
+
+  const searchInput = document.getElementById("mapSearchInput");
+  const searchBtn = document.getElementById("mapSearchBtn");
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener("click", () => {
+      searchLocation(searchInput.value);
+    });
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        searchLocation(searchInput.value);
+      }
+    });
+  }
 
   calculateRoute("Calculate a 2-kilometer loop maximizing tree canopy exposure");
 

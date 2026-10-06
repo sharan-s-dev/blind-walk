@@ -15,234 +15,282 @@
   <key id="d0" for="graph" attr.name="crs" attr.type="string" />
   <graph edgedefault="directed">
     <node id="101">
-      <data key="d2">12.6538</data>
-      <data key="d3">77.4428</data>
-      <data key="d4">Campus South Gate (Arrival)</data>
+      <data key="d2">12.6418</data>
+      <data key="d3">77.4372</data>
+      <data key="d4">Jain University Arrival Gate (off Kanakapura Rd)</data>
       <data key="d5">720</data>
     </node>
     <node id="102">
-      <data key="d2">12.655800000000001</data>
-      <data key="d3">77.4428</data>
-      <data key="d4">Academic Central Quad</data>
+      <data key="d2">12.6412</data>
+      <data key="d3">77.4387</data>
+      <data key="d4">Jain University Golf Course Trail</data>
       <data key="d5">722</data>
     </node>
     <node id="103">
-      <data key="d2">12.6568</data>
-      <data key="d3">77.44130000000001</data>
-      <data key="d4">Library Neem Canopy Walk</data>
+      <data key="d2">12.6417</data>
+      <data key="d3">77.4405</data>
+      <data key="d4">School of Engineering (SET Dome)</data>
       <data key="d5">724</data>
     </node>
     <node id="104">
-      <data key="d2">12.6583</data>
-      <data key="d3">77.44030000000001</data>
-      <data key="d4">Herbal Forest West Gate</data>
-      <data key="d5">728</data>
+      <data key="d2">12.6409</data>
+      <data key="d3">77.4409</data>
+      <data key="d4">Campus Mess &amp; Shaded Neem Walk</data>
+      <data key="d5">723</data>
     </node>
     <node id="105">
-      <data key="d2">12.660300000000001</data>
-      <data key="d3">77.4418</data>
-      <data key="d4">Dense Eucalyptus Grove North</data>
-      <data key="d5">732</data>
+      <data key="d2">12.6396</data>
+      <data key="d3">77.4416</data>
+      <data key="d4">Jain University Football Ground</data>
+      <data key="d5">722</data>
     </node>
     <node id="106">
-      <data key="d2">12.6598</data>
-      <data key="d3">77.4448</data>
-      <data key="d4">Rainwater Lake Overlook Trail</data>
+      <data key="d2">12.6401</data>
+      <data key="d3">77.4449</data>
+      <data key="d4">Jain University Cricket Ground</data>
       <data key="d5">725</data>
     </node>
     <node id="107">
-      <data key="d2">12.6578</data>
-      <data key="d3">77.4458</data>
-      <data key="d4">East Perimeter Dirt Track</data>
-      <data key="d5">721</data>
+      <data key="d2">12.6409</data>
+      <data key="d3">77.4445</data>
+      <data key="d4">JIRS Swimming Pool &amp; Sports Complex</data>
+      <data key="d5">726</data>
     </node>
     <node id="108">
-      <data key="d2">12.6553</data>
-      <data key="d3">77.4443</data>
-      <data key="d4">Sports Ground Shaded Pathway</data>
+      <data key="d2">12.6382</data>
+      <data key="d3">77.4435</data>
+      <data key="d4">Jain Temple &amp; Spiritual Garden</data>
+      <data key="d5">721</data>
+    </node>
+    <node id="109">
+      <data key="d2">12.6377</data>
+      <data key="d3">77.4431</data>
+      <data key="d4">Colloseum Amphitheater Trail</data>
+      <data key="d5">720</data>
+    </node>
+    <node id="110">
+      <data key="d2">12.6384</data>
+      <data key="d3">77.4402</data>
+      <data key="d4">Core Block &amp; Aerospace Lab Walk</data>
       <data key="d5">719</data>
     </node>
     <edge source="101" target="102" id="0">
-      <data key="d6">footway</data>
-      <data key="d7">paved</data>
-      <data key="d8">0.2</data>
-      <data key="d9">Main Entrance Walkway</data>
-      <data key="d10">222.39</data>
-      <data key="d11">0.0</data>
-      <data key="d12">pedestrian_walkway</data>
-    </edge>
-    <edge source="101" target="108" id="0">
-      <data key="d6">footway</data>
-      <data key="d7">paved</data>
-      <data key="d8">0.2</data>
-      <data key="d9">Sports Pavilion Corridor</data>
-      <data key="d10">233.03</data>
-      <data key="d11">44.3</data>
-      <data key="d12">pedestrian_walkway</data>
-    </edge>
-    <edge source="102" target="101" id="0">
-      <data key="d6">footway</data>
-      <data key="d7">paved</data>
-      <data key="d8">0.2</data>
-      <data key="d9">Main Entrance Walkway</data>
-      <data key="d10">222.39</data>
-      <data key="d11">180.0</data>
-      <data key="d12">pedestrian_walkway</data>
-    </edge>
-    <edge source="102" target="103" id="0">
       <data key="d6">path</data>
       <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Neem Grove Path</data>
-      <data key="d10">197.1</data>
-      <data key="d11">304.3</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Golf Course Shaded Trail</data>
+      <data key="d10">175.89</data>
+      <data key="d11">112.3</data>
       <data key="d12">dirt_trail</data>
     </edge>
-    <edge source="102" target="108" id="0">
+    <edge source="101" target="110" id="0">
+      <data key="d6">track</data>
+      <data key="d7">unpaved</data>
+      <data key="d8">0.75</data>
+      <data key="d9">West Perimeter Dirt Road</data>
+      <data key="d10">498.88</data>
+      <data key="d11">139.3</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="102" target="101" id="0">
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Golf Course Shaded Trail</data>
+      <data key="d10">175.89</data>
+      <data key="d11">292.3</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="102" target="103" id="0">
       <data key="d6">footway</data>
       <data key="d7">paved</data>
-      <data key="d8">0.2</data>
-      <data key="d9">Central Cross Campus Walkway</data>
-      <data key="d10">171.98</data>
-      <data key="d11">108.9</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Engineering Block Boulevard</data>
+      <data key="d10">203.06</data>
+      <data key="d11">74.1</data>
       <data key="d12">pedestrian_walkway</data>
     </edge>
     <edge source="103" target="102" id="0">
-      <data key="d6">path</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Neem Grove Path</data>
-      <data key="d10">197.1</data>
-      <data key="d11">124.3</data>
-      <data key="d12">dirt_trail</data>
+      <data key="d6">footway</data>
+      <data key="d7">paved</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Engineering Block Boulevard</data>
+      <data key="d10">203.06</data>
+      <data key="d11">254.1</data>
+      <data key="d12">pedestrian_walkway</data>
     </edge>
     <edge source="103" target="104" id="0">
-      <data key="d6">track</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Herbal Forest Boundary Trail</data>
-      <data key="d10">198.97</data>
-      <data key="d11">327.0</data>
-      <data key="d12">dirt_trail</data>
+      <data key="d6">footway</data>
+      <data key="d7">paved</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Central Quad Neem Corridor</data>
+      <data key="d10">98.98</data>
+      <data key="d11">154.0</data>
+      <data key="d12">pedestrian_walkway</data>
     </edge>
-    <edge source="103" target="106" id="0">
-      <data key="d6">track</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Botanical Cross Cut Trail</data>
-      <data key="d10">505.44</data>
-      <data key="d11">48.7</data>
-      <data key="d12">dirt_trail</data>
+    <edge source="103" target="110" id="0">
+      <data key="d6">footway</data>
+      <data key="d7">paved</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Academic Cross Campus Pathway</data>
+      <data key="d10">368.38</data>
+      <data key="d11">185.1</data>
+      <data key="d12">pedestrian_walkway</data>
     </edge>
     <edge source="104" target="103" id="0">
-      <data key="d6">track</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Herbal Forest Boundary Trail</data>
-      <data key="d10">198.97</data>
-      <data key="d11">147.0</data>
-      <data key="d12">dirt_trail</data>
+      <data key="d6">footway</data>
+      <data key="d7">paved</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Central Quad Neem Corridor</data>
+      <data key="d10">98.98</data>
+      <data key="d11">334.0</data>
+      <data key="d12">pedestrian_walkway</data>
     </edge>
     <edge source="104" target="105" id="0">
-      <data key="d6">track</data>
-      <data key="d7">unpaved</data>
-      <data key="d8">0.7</data>
-      <data key="d9">North Hill Eucalyptus Ridgeline</data>
-      <data key="d10">275.57</data>
-      <data key="d11">36.2</data>
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Football Ground Tree Perimeter</data>
+      <data key="d10">163.29</data>
+      <data key="d11">152.3</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="104" target="108" id="0">
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Spiritual Centre Shaded Cut</data>
+      <data key="d10">411.97</data>
+      <data key="d11">136.8</data>
       <data key="d12">dirt_trail</data>
     </edge>
     <edge source="105" target="104" id="0">
-      <data key="d6">track</data>
-      <data key="d7">unpaved</data>
-      <data key="d8">0.7</data>
-      <data key="d9">North Hill Eucalyptus Ridgeline</data>
-      <data key="d10">275.57</data>
-      <data key="d11">216.2</data>
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Football Ground Tree Perimeter</data>
+      <data key="d10">163.29</data>
+      <data key="d11">332.3</data>
       <data key="d12">dirt_trail</data>
     </edge>
     <edge source="105" target="106" id="0">
-      <data key="d6">path</data>
-      <data key="d7">ground</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Lake Descent Ridge</data>
-      <data key="d10">330.19</data>
-      <data key="d11">99.7</data>
+      <data key="d6">track</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">East Sports Complex Link Trail</data>
+      <data key="d10">362.34</data>
+      <data key="d11">81.2</data>
       <data key="d12">dirt_trail</data>
     </edge>
     <edge source="106" target="105" id="0">
-      <data key="d6">path</data>
-      <data key="d7">ground</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Lake Descent Ridge</data>
-      <data key="d10">330.19</data>
-      <data key="d11">279.7</data>
+      <data key="d6">track</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">East Sports Complex Link Trail</data>
+      <data key="d10">362.34</data>
+      <data key="d11">261.2</data>
       <data key="d12">dirt_trail</data>
     </edge>
     <edge source="106" target="107" id="0">
-      <data key="d6">track</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">East Lake Perimeter Dirt Road</data>
-      <data key="d10">247.44</data>
-      <data key="d11">154.0</data>
-      <data key="d12">dirt_trail</data>
-    </edge>
-    <edge source="106" target="103" id="0">
-      <data key="d6">track</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">Botanical Cross Cut Trail</data>
-      <data key="d10">505.44</data>
-      <data key="d11">228.7</data>
-      <data key="d12">dirt_trail</data>
-    </edge>
-    <edge source="107" target="106" id="0">
-      <data key="d6">track</data>
-      <data key="d7">dirt</data>
-      <data key="d8">0.7</data>
-      <data key="d9">East Lake Perimeter Dirt Road</data>
-      <data key="d10">247.44</data>
+      <data key="d6">path</data>
+      <data key="d7">unpaved</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Cricket Ground Perimeter Walk</data>
+      <data key="d10">98.98</data>
       <data key="d11">334.0</data>
       <data key="d12">dirt_trail</data>
     </edge>
-    <edge source="107" target="108" id="0">
+    <edge source="107" target="106" id="0">
       <data key="d6">path</data>
       <data key="d7">unpaved</data>
-      <data key="d8">0.7</data>
-      <data key="d9">East Tree Boundary Walk</data>
-      <data key="d10">322.12</data>
-      <data key="d11">210.3</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Cricket Ground Perimeter Walk</data>
+      <data key="d10">98.98</data>
+      <data key="d11">154.0</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="107" target="108" id="0">
+      <data key="d6">track</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Temple Garden Shaded Avenue</data>
+      <data key="d10">319.23</data>
+      <data key="d11">199.9</data>
       <data key="d12">dirt_trail</data>
     </edge>
     <edge source="108" target="107" id="0">
-      <data key="d6">path</data>
-      <data key="d7">unpaved</data>
-      <data key="d8">0.7</data>
-      <data key="d9">East Tree Boundary Walk</data>
-      <data key="d10">322.12</data>
-      <data key="d11">30.3</data>
+      <data key="d6">track</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Temple Garden Shaded Avenue</data>
+      <data key="d10">319.23</data>
+      <data key="d11">19.9</data>
       <data key="d12">dirt_trail</data>
     </edge>
-    <edge source="108" target="101" id="0">
+    <edge source="108" target="109" id="0">
       <data key="d6">footway</data>
       <data key="d7">paved</data>
-      <data key="d8">0.2</data>
-      <data key="d9">Sports Pavilion Corridor</data>
-      <data key="d10">233.03</data>
-      <data key="d11">224.3</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Colloseum Ridge Walkway</data>
+      <data key="d10">70.53</data>
+      <data key="d11">218.0</data>
       <data key="d12">pedestrian_walkway</data>
     </edge>
-    <edge source="108" target="102" id="0">
+    <edge source="108" target="104" id="0">
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Spiritual Centre Shaded Cut</data>
+      <data key="d10">411.97</data>
+      <data key="d11">316.8</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="109" target="108" id="0">
       <data key="d6">footway</data>
       <data key="d7">paved</data>
-      <data key="d8">0.2</data>
-      <data key="d9">Central Cross Campus Walkway</data>
-      <data key="d10">171.98</data>
-      <data key="d11">288.9</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Colloseum Ridge Walkway</data>
+      <data key="d10">70.53</data>
+      <data key="d11">38.0</data>
+      <data key="d12">pedestrian_walkway</data>
+    </edge>
+    <edge source="109" target="110" id="0">
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Aerospace Lab Boundary Trail</data>
+      <data key="d10">324.14</data>
+      <data key="d11">283.9</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="110" target="109" id="0">
+      <data key="d6">path</data>
+      <data key="d7">dirt</data>
+      <data key="d8">0.75</data>
+      <data key="d9">Aerospace Lab Boundary Trail</data>
+      <data key="d10">324.14</data>
+      <data key="d11">103.9</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="110" target="101" id="0">
+      <data key="d6">track</data>
+      <data key="d7">unpaved</data>
+      <data key="d8">0.75</data>
+      <data key="d9">West Perimeter Dirt Road</data>
+      <data key="d10">498.88</data>
+      <data key="d11">319.3</data>
+      <data key="d12">dirt_trail</data>
+    </edge>
+    <edge source="110" target="103" id="0">
+      <data key="d6">footway</data>
+      <data key="d7">paved</data>
+      <data key="d8">0.25</data>
+      <data key="d9">Academic Cross Campus Pathway</data>
+      <data key="d10">368.38</data>
+      <data key="d11">5.1</data>
       <data key="d12">pedestrian_walkway</data>
     </edge>
     <data key="d0">epsg:4326</data>
-    <data key="d1">Jain Global Campus - Offline Spatial Grid</data>
+    <data key="d1">Jain Global Campus - Verified Spatial Grid</data>
   </graph>
 </graphml>

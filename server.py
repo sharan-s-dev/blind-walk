@@ -110,8 +110,8 @@ class BlindWalkHTTPHandler(SimpleHTTPRequestHandler):
                 "surface": getattr(cmd, "surface", "dirt_trail"),
                 "canopy": getattr(cmd, "canopy", "dense"),
                 "audio_cue": getattr(cmd, "audio_cue", ""),
-                "coords": [u_node.get("y", 12.6538), u_node.get("x", 77.4428)],
-                "target_coords": [v_node.get("y", 12.6558), v_node.get("x", 77.4428)],
+                "coords": [u_node.get("y", 12.6395), u_node.get("x", 77.4420)],
+                "target_coords": [v_node.get("y", 12.6395), v_node.get("x", 77.4420)],
             })
 
         avg_canopy = sum(s.get("canopy_score", 0.5) for s in segments) / max(1, len(segments))

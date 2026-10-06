@@ -207,9 +207,23 @@
 
         <!-- Floating Map Overlay Controls -->
         <div class="map-floating-overlay top-left">
-          <div class="map-badge">
-            <span class="pulse-indicator"></span>
-            <span>Jain Global Campus • Kanakapura</span>
+          <div class="location-search-box">
+            <div class="location-select-wrap">
+              <span class="pulse-indicator"></span>
+              <select id="locationPresetSelect" class="location-preset-dropdown" title="Select Pre-Mapped Campus or Nature Reserve">
+                <option value="jain" selected>🎓 Jain Global Campus (Kanakapura)</option>
+                <option value="iisc">🏛️ IISc Bangalore Campus</option>
+                <option value="cubbon">🌿 Cubbon Park Nature Preserve</option>
+                <option value="lalbagh">🌳 Lalbagh Botanical Garden</option>
+                <option value="nandi">🏔️ Nandi Hills Hiking Trail</option>
+              </select>
+            </div>
+            <div class="search-input-wrap">
+              <input type="text" id="mapSearchInput" placeholder="Search any city or park worldwide..." />
+              <button id="mapSearchBtn" class="search-btn" title="Search Location (OpenStreetMap)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
+            </div>
           </div>
         </div>
 

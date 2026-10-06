@@ -31,7 +31,8 @@ Whenever I tried navigating cross-campus, two major problems emerged:
 *(Open in any browser — zero installation needed to test the map & audio navigation)*
 
 ### 1. Interactive Web Cockpit (`http://localhost:8000` or Live URL)
-- **Real Campus Topology:** Centered on Jain Global Campus (Kanakapura, Karnataka) with pedestrian footpaths, perimeter dirt tracks, and shaded groves rendered on top of Dark Matter, Satellite, or Topo layers.
+- **Verified Campus Grounds & Multi-Location Presets:** Centered on the exact grounds of Jain Global Campus (Kanakapura, Karnataka) featuring the Golf Course, School of Engineering (SET Dome), Central Mess, Cricket & Football Grounds, Jain Temple, and Colloseum Amphitheater. Also includes instant presets for **IISc Bangalore**, **Cubbon Park Nature Preserve**, **Lalbagh Botanical Garden**, and **Nandi Hills Hiking Reserve**.
+- **Worldwide Location Search:** Search any city, park, university, or nature reserve on Earth using integrated OpenStreetMap Nominatim geocoding to dynamically synthesize shaded walking loops anywhere.
 - **Natural Language Route Queries:** Type custom constraints or click presets like:
   - 🌿 *2 km Shaded Loop (Maximizes Neem Tree Canopy)*
   - 🍂 *1.5 km Dirt Trail Walk*
