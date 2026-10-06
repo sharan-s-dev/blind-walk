@@ -30,7 +30,7 @@ Whenever I tried navigating cross-campus, three major issues made standard map a
 🌐 **Live Deployed Web App:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/)  
 *(Open in any desktop or mobile browser — 100% free, zero installation, zero API keys required)*
 
-▶️ **Demo Vidoo:** https://www.youtube.com/watch?v=QFaH2oNeOLs
+▶️ **Demo Video:** https://www.youtube.com/watch?v=QFaH2oNeOLs
 
 ### 1. Interactive Web Cockpit (`http://localhost:8000` or Live URL)
 - **Verified Ground-Truth Campus Topology:** Mapped directly to verified ground features across Jain University Global Campus:
