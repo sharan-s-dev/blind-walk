@@ -1,5 +1,5 @@
 # BlindWalk 🌿
-### Air-Gapped Spatial Routing & Screenless Sensory Audio Navigator
+BlindWalk: Zero-Screen Pedestrian Navigation Using Local Open-Weight AI and Directional Audio Beacons
 
 [![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-2024%20%2F%202026-blueviolet?style=flat-square&logo=hacktoberfest)](https://hacktoberfest.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=flat-square)](LICENSE)
