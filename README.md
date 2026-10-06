@@ -14,7 +14,7 @@
 
 ## 💡 The Backstory: Why I Built BlindWalk
 
-If you have ever walked around the **Jain Global Campus in Kanakapura (Karnataka)** around midday, you know the heat: easily 34°C to 36°C with blinding sun glare. 
+If you have ever walked around my college campus—**Jain University Global Campus in Kanakapura (Karnataka)**—around midday, you know the heat: easily 34°C to 36°C with blinding sun glare. 
 
 Whenever I tried navigating cross-campus, two major problems emerged:
 1. **Google Maps is car-biased and shade-blind:** Commercial map apps persistently route you onto open asphalt service roads where the sun beats down relentlessly, completely ignoring the lush neem tree canopy paths, herbal plantation boundaries, and shaded eucalyptus tracks.

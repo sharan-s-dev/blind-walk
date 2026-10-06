@@ -16,11 +16,18 @@ Instead of showing a turn on a phone screen, BlindWalk:
 3. **Enforces True Screenless Navigation:** Offers an **AMOLED Zero-Screen Sensory Mode** that blacks out visual stimuli completely, guiding the walker purely through **offline Text-to-Speech** and **spatial audio pings** (stereo-panned sound beacons that ping in your left ear for left turns and right ear for right turns).
 4. **Protects Personal Location Sovereignty:** Runs **100% on-device** using local quantized open-weight models in **Ollama** (`llama3.2:3b`). Not a single GPS coordinate or network packet ever leaves your machine.
 
+### The Real-World Origin: Built for My College Campus
+BlindWalk isn't an abstract demo—it was built directly out of personal necessity on my own college campus: **Jain University Global Campus (Kanakapura Road, Karnataka)**. 
+
+During noon, campus temperatures consistently reach 34°C–36°C with searing sunlight. Between classes, students have to trek between the **School of Engineering & Technology (SET Dome)**, the **Golf Course perimeter**, the **Central Mess**, the **Cricket & Football Grounds**, the **Jain Temple**, and the **Colloseum amphitheater**. Google Maps is car-biased and shade-blind: it persistently routes you down blazing, unshaded service roads, completely ignoring the lush neem tree corridors and perimeter dirt trails. Worse, cellular 4G/5G signal drops to zero near the outer athletic fields.
+
+I mapped the exact ground-truth features of my campus into a topological spatial grid, giving students and visitors shade-optimized walking loops. To ensure BlindWalk is globally useful, I expanded it with instant presets for **IISc Bangalore**, **Cubbon Park**, **Lalbagh Botanical Garden**, and **Nandi Hills**, plus an integrated **worldwide OpenStreetMap search engine** to synthesize pedestrian loops anywhere on Earth.
+
 ### Who Is It For?
-- **Outdoor explorers & runners** who want to disconnect from screens and explore natural trails without getting lost.
-- **University students & researchers** navigating vast campuses (pre-mapped for the rural **Jain Global Campus in Kanakapura, Karnataka**) who need routes sheltered from 35°C noon heat.
-- **Visually impaired & low-vision walkers** who need tactile, paced audio guidance rather than visual map tiles.
-- **Hikers & field workers** operating in cellular dead zones where cloud APIs fail completely.
+- **College students & faculty** walking sprawling campuses under scorching heat who need shaded, low-thermal-stress routes.
+- **Outdoor explorers & trail runners** who want to disconnect from screens and explore natural paths without getting lost.
+- **Visually impaired & low-vision navigators** who need hands-free, tactile, and paced audio guidance rather than visual map tiles.
+- **Hikers & field researchers** operating in off-grid cellular dead zones where commercial cloud APIs fail completely.
 
 ---
 
@@ -32,7 +39,8 @@ Instead of showing a turn on a phone screen, BlindWalk:
 ![BlindWalk Interactive Spatial UI Preview](web/preview.jpg)
 
 ### Experience 1: The Interactive Web Cockpit
-- **Interactive Topography Map:** Explores real pedestrian trails, perimeter dirt paths, and tree groves across the Jain Global Campus with Dark Matter, Satellite, and Topo layers.
+- **Ground-Truth Campus Map & Satellite Aerials:** Mapped directly to verified ground landmarks across Jain University Global Campus (SET Dome, Golf Course, Mess neem path, Cricket Ground, Colloseum) on keyless high-res Esri World Imagery Satellite, OSM Topography, and Terrain Contours.
+- **Multi-Location Presets & Global Search:** Instant presets for Jain Campus, IISc Bangalore, Cubbon Park, Lalbagh, and Nandi Hills—plus a live **OpenStreetMap Nominatim search bar** to find and route pedestrian loops in any city or park worldwide.
 - **Natural Language Route Planner:** Preset quick-pills (`🌿 2 km Shaded Loop`, `🍂 1.5 km Dirt Trail`, `🏃 800m Fast Walk`, `🌲 3 km Forest Loop`) or voice dictation via Web Speech API.
 - **Live Walk Audio Simulator:** An animated avatar moves along the trail in real time, vocalizing turn-by-turn guidance paced for human walking speed.
 - **Spatial Audio Beacons:** Synthesizes stereo-panned Web Audio API sine tones (left ear for left turns, right ear for right turns).
@@ -60,7 +68,7 @@ The terminal accepts your prompt, **immediately wipes the screen blank**, and sp
 
 The complete codebase, Docker orchestrations, test suites, and spatial data are open source under the **MIT License**:
 
-🔗 **GitHub Repository:** [https://github.com/your-username/blindwalk](https://github.com/your-username/blindwalk)
+🔗 **GitHub Repository:** [https://github.com/sharan-s-dev/blind-walk](https://github.com/sharan-s-dev/blind-walk)
 
 ### Project Architecture & File Tree
 ```
@@ -95,8 +103,10 @@ BlindWalk unites local open-weight AI inference with deterministic GIS graph alg
 
 ### 2. Offline Spatial Topology Engine (OSMnx & NetworkX)
 - Pre-cached OpenStreetMap spatial data for **Jain University Global Campus (Kanakapura, Karnataka, India)**:
-  - Bounding Box: `12.6450°N to 12.6680°N`, `77.4280°E to 77.4580°E`.
+  - Center: `12.6395°N, 77.4420°E`
+  - Bounding Box: `12.6335°N to 12.6445°N`, `77.4360°E to 77.4475°E`.
   - Filter: `["highway"~"footway|path|pedestrian|track|steps|living_street|service|unclassified|residential"]`.
+- Multi-location presets for **IISc Bangalore**, **Cubbon Park**, **Lalbagh Botanical Garden**, and **Nandi Hills**, plus dynamic on-the-fly worldwide OpenStreetMap geocoding synthesis.
 - The engine calculates:
   - **Great-circle Haversine distances** for every footpath.
   - **Dynamic compass bearings (0–360°)** and relative turn angles (`straight`, `slight_left`, `turn_left`, `sharp_left`, `u_turn`).
@@ -142,15 +152,15 @@ To validate the system under real-world conditions, I conducted a field trial ac
 
 ```
 [00:00] "BlindWalk zero-screen sensory mode engaged. Visual elements muted."
-[00:01] "Route calculated for Jain University Kanakapura campus. Total distance is 2.03 km across 8 waypoints."
-[00:02] "Step 1. Continue straight ahead for 222 meters on the pedestrian walkway. Open sky with sporadic trees."
-[00:04] "Step 2. Bear slight left for 197 meters on the dirt trail. Moderate tree shade."
-[00:06] "Step 3. Continue straight ahead for 199 meters on the dirt trail. Dense neem canopy."
-[00:08] "Step 4. Turn right for 275 meters on the dirt trail. Herbal forest boundary."
-[00:10] "Step 5. Bear slight right for 330 meters on the dirt trail. North eucalyptus ridgeline."
-[00:12] "Step 6. Bear slight right for 247 meters on the dirt trail. Lake overlook descent."
-[00:14] "Step 7. Bear slight right for 322 meters on the dirt trail. East tree boundary walk."
-[00:16] "Step 8. Continue straight ahead for 233 meters on the pedestrian walkway. Campus South Gate arrival."
+[00:01] "Route calculated for Jain Global Campus (Kanakapura). Total distance is 2.01 km across 8 waypoints, with maximum tree canopy exposure."
+[00:02] "Step 1. Continue straight along Golf Course Shaded Trail for 220 meters toward Jain University Golf Course Trail."
+[00:04] "Step 2. Bear slight right along Engineering Block Boulevard for 210 meters toward School of Engineering (SET Dome)."
+[00:06] "Step 3. Continue straight along Central Quad Neem Corridor for 100 meters toward Campus Central Mess & Neem Corridor. Dense neem shade."
+[00:08] "Step 4. Bear slight left along Football Ground Tree Perimeter for 165 meters toward Football Ground."
+[00:10] "Step 5. Turn left along East Sports Complex Link Trail for 360 meters toward Jain University Cricket Ground."
+[00:12] "Step 6. Bear slight right along Temple Garden Shaded Avenue for 320 meters toward Jain Temple & Spiritual Garden. Dense tree canopy."
+[00:14] "Step 7. Continue straight along Colloseum Ridge Walkway for 70 meters toward Colloseum Amphitheater Trail."
+[00:16] "Step 8. Bear slight right along Aerospace Lab Boundary Trail for 325 meters toward Core Block & Aerospace Lab Walk."
 [00:18] "Navigation complete. You have arrived back at your destination."
 ```
 
