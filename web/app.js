@@ -262,6 +262,19 @@ class SpatialAudioBeacon {
   playTurnBeacon(turnType) {
     if (!state.audioBeaconsEnabled) return;
     try {
+      // Haptic tactile feedback for mobile devices in pocket (tactile screenless navigation)
+      if (typeof navigator !== "undefined" && navigator.vibrate) {
+        try {
+          if (turnType.includes("left")) {
+            navigator.vibrate([70, 50, 70]); // Double-tap buzz for left turn
+          } else if (turnType.includes("right")) {
+            navigator.vibrate([160]);        // Single sustained buzz for right turn
+          } else {
+            navigator.vibrate([35]);         // Micro tick pulse for straight
+          }
+        } catch (_) {}
+      }
+
       this.ensureContext();
       if (!this.ctx) return;
 
