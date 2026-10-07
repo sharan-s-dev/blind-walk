@@ -12,7 +12,7 @@ Whether you're fixing a bug, adding new campus grids, improving accessibility fo
 2. Clone your fork locally:
    ```bash
    git clone https://github.com/sharan-s-dev/blind-walk.git
-   cd blindwalk
+   cd blind-walk
    ```
 3. Run the test suite to ensure everything is working:
    ```bash
