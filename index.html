@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlindWalk — Air-Gapped Spatial Routing & Sensory Audio Navigator</title>
+  <meta name="description" content="Offline, zero-GUI spatial routing and acoustic navigation agent. Designed for off-grid pedestrian traversal and data sovereignty.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main Application Wrapper -->
+  <div id="app" class="app-container">
+    
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 11 18-5v12L3 14v-3z"/>
+            <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+            <path d="M22 6a3 3 0 0 1 0 6"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">BlindWalk <span class="badge-beta">v1.0</span></div>
+          <div class="brand-subtitle">Zero-GUI Spatial Navigator • Jain Global Campus</div>
+        </div>
+      </div>
+
+      <div class="header-status">
+        <div class="status-chip airgap-active" id="airgapChip" title="All operations run on local hardware. Zero remote telemetry.">
+          <span class="status-dot"></span>
+          <span>Air-Gapped: 0 Remote Packets</span>
+        </div>
+        <div class="status-chip model-chip" id="modelChip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/>
+          </svg>
+          <span id="activeModelLabel">Ollama • llama3.2:3b</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="toggleZeroScreenBtn" class="btn btn-zero-screen" title="Switch to AMOLED Zero-Screen Audio Mode">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12h20"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/>
+            <path d="m4 8 2 4"/><path d="m20 8-2 4"/><path d="m9 4 1 8"/><path d="m15 4-1 8"/>
+          </svg>
+          <span>Zero-Screen Mode</span>
+        </button>
+
+        <button id="audioSettingsBtn" class="btn btn-icon" title="Audio Cadence & Voice Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.08"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <div class="workspace-grid">
+      
+      <!-- Left Panel: Natural Language Constraints, Spatial Metrics & Instructions -->
+      <aside class="control-panel">
+        
+        <!-- Query Input Section -->
+        <section class="panel-card query-card">
+          <label for="promptInput" class="card-label">Natural Language Spatial Constraint</label>
+          <div class="query-input-group">
+            <textarea id="promptInput" rows="2" placeholder="e.g. Calculate a 2-kilometer loop maximizing tree canopy exposure"></textarea>
+            <div class="input-actions">
+              <button id="voiceInputBtn" class="icon-btn" title="Speak Query (Web Speech API)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" x2="12" y1="19" y2="22"/>
+                </svg>
+              </button>
+              <button id="submitQueryBtn" class="btn btn-primary">
+                <span>Calculate Route</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Preset Quick Pills -->
+          <div class="preset-chips">
+            <span class="preset-chip" data-query="Calculate a 2-kilometer loop maximizing tree canopy exposure">
+              🌿 2 km Shaded Loop
+            </span>
+            <span class="preset-chip" data-query="Find a 1.5 km dirt trail walk avoiding main paved road">
+              🍂 1.5 km Dirt Trail
+            </span>
+            <span class="preset-chip" data-query="Calculate an 800-meter swift perimeter walk">
+              🏃 800m Fast Walk
+            </span>
+            <span class="preset-chip" data-query="Explore a 3-kilometer dense eucalyptus forest loop">
+              🌲 3 km Forest Loop
+            </span>
+          </div>
+        </section>
+
+        <!-- Route Metrics Summary Card (Shown when route generated) -->
+        <section class="panel-card metrics-card" id="metricsCard">
+          <div class="metrics-header">
+            <h3 class="panel-title">Spatial Telemetry</h3>
+            <span class="badge-accent" id="routeStatusBadge">Synthesized</span>
+          </div>
+          
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-label">Total Distance</span>
+              <span class="metric-val" id="metricDistance">2.03 km</span>
+              <span class="metric-sub" id="metricDiff">Target: 2.0 km (+1.3%)</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Tree Canopy</span>
+              <span class="metric-val highlight-green" id="metricCanopy">84%</span>
+              <span class="metric-sub">Thermal Sun Protection</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Waypoints</span>
+              <span class="metric-val" id="metricWaypoints">8 Steps</span>
+              <span class="metric-sub">Closed Circuit</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Est. Walk Time</span>
+              <span class="metric-val" id="metricTime">25 min</span>
+              <span class="metric-sub">Pace: 4.8 km/h</span>
+            </div>
+          </div>
+
+          <!-- Surface Breakdown Bar -->
+          <div class="surface-breakdown">
+            <div class="breakdown-labels">
+              <span>Dirt & Trail Track (78%)</span>
+              <span>Paved Walkway (22%)</span>
+            </div>
+            <div class="breakdown-bar">
+              <div class="bar-dirt" style="width: 78%;"></div>
+              <div class="bar-paved" style="width: 22%;"></div>
+            </div>
+          </div>
+
+          <!-- Walk Simulation Controls -->
+          <div class="sim-controls">
+            <button id="startSimBtn" class="btn btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span id="simBtnText">Simulate Walk Audio</span>
+            </button>
+            <button id="repeatAudioBtn" class="btn btn-outline" title="Repeat Current Acoustic Cue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              <span>Repeat Cue</span>
+            </button>
+          </div>
+
+          <!-- Open-Source GIS Export Actions -->
+          <div class="export-actions" style="display: flex; gap: 8px; margin-top: 10px;">
+            <button id="exportGpxBtn" class="btn btn-outline" style="flex: 1; font-size: 0.75rem;" title="Export standard GPX route for Garmin/Apple Watch">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export .GPX</span>
+            </button>
+            <button id="exportGeoBtn" class="btn btn-outline" style="flex: 1; font-size: 0.75rem;" title="Export GeoJSON vector feature collection">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export GeoJSON</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Turn-by-Turn Navigational Commands List -->
+        <section class="panel-card instructions-card">
+          <div class="instructions-header">
+            <h3 class="panel-title">Physical Turn-by-Turn Commands</h3>
+            <span class="badge-steps" id="stepCounterBadge">8 Instructions</span>
+          </div>
+
+          <div class="instructions-list" id="instructionsList">
+            <!-- Dynamic step cards generated via JS -->
+          </div>
+        </section>
+
+      </aside>
+
+      <!-- Center & Right: Interactive Map Canvas -->
+      <main class="map-container">
+        
+        <!-- Live Map Element -->
+        <div id="campusMap"></div>
+
+        <!-- Floating Map Overlay Controls -->
+        <div class="map-floating-overlay top-left">
+          <div class="location-search-box">
+            <div class="location-select-wrap">
+              <span class="pulse-indicator"></span>
+              <select id="locationPresetSelect" class="location-preset-dropdown" title="Select Pre-Mapped Campus or Nature Reserve">
+                <option value="jain" selected>🎓 Jain Global Campus (Kanakapura)</option>
+                <option value="iisc">🏛️ IISc Bangalore Campus</option>
+                <option value="cubbon">🌿 Cubbon Park Nature Preserve</option>
+                <option value="lalbagh">🌳 Lalbagh Botanical Garden</option>
+                <option value="nandi">🏔️ Nandi Hills Hiking Trail</option>
+              </select>
+            </div>
+            <div class="search-input-wrap">
+              <input type="text" id="mapSearchInput" placeholder="Search any city or park worldwide..." />
+              <button id="mapSearchBtn" class="search-btn" title="Search Location (OpenStreetMap)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-floating-overlay top-right">
+          <div class="layer-selector">
+            <button id="tileSatBtn" class="layer-btn active">Satellite (Aerial)</button>
+            <button id="tileOutdoorsBtn" class="layer-btn">Topography (OSM)</button>
+            <button id="tileTerrainBtn" class="layer-btn">Terrain Contours</button>
+          </div>
+        </div>
+
+        <!-- Floating Live Traversal Card -->
+        <div class="map-floating-overlay bottom-center" id="activeStepHUD">
+          <div class="hud-card">
+            <div class="hud-icon" id="hudTurnIcon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+              </svg>
+            </div>
+            <div class="hud-details">
+              <div class="hud-step-num" id="hudStepNum">Step 1 of 8</div>
+              <div class="hud-instruction" id="hudInstructionText">
+                Head northeast along neem tree avenue for 222 meters.
+              </div>
+            </div>
+            <div class="hud-distance" id="hudDistance">222 m</div>
+          </div>
+        </div>
+
+        <!-- Audio Oscilloscope Canvas Overlay (Pulsing during speech) -->
+        <div class="map-floating-overlay bottom-left">
+          <div class="oscilloscope-container" id="oscilloBox">
+            <div class="oscillo-label">
+              <span class="sound-indicator"></span>
+              <span id="speechStateText">Acoustic Standby</span>
+            </div>
+            <canvas id="audioVisualizerCanvas" width="180" height="36"></canvas>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- ZERO-SCREEN / SENSORY AMOLED OVERLAY -->
+    <div id="zeroScreenModal" class="zero-screen-modal hidden">
+      <div class="zero-screen-backdrop"></div>
+      
+      <div class="zero-screen-content">
+        <div class="zero-screen-header">
+          <div class="zero-badge">
+            <span class="pulse-dot red"></span>
+            <span>Zero-Screen Sensory Mode Engaged</span>
+          </div>
+          <button id="exitZeroScreenBtn" class="btn btn-close-zero" title="Exit Zero-Screen (Esc)">
+            ✕ Exit Screenless Mode
+          </button>
+        </div>
+
+        <!-- Giant Audio Waveform & Radar Pulse -->
+        <div class="radar-box">
+          <div class="radar-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+          </div>
+          <canvas id="largeWaveformCanvas" width="480" height="120"></canvas>
+        </div>
+
+        <!-- Massive High-Contrast Instruction Display -->
+        <div class="sensory-cue-box">
+          <div class="sensory-step-index" id="sensoryStepIndex">STEP 1 / 8</div>
+          <div class="sensory-cue-text" id="sensoryCueText">
+            "Continue straight ahead for 222 meters on the pedestrian walkway. Open sky with sporadic trees."
+          </div>
+          <div class="sensory-telemetry">
+            <span id="sensoryDistance">Distance: 222m</span>
+            <span>•</span>
+            <span id="sensoryHeading">Bearing: 45° Northeast</span>
+            <span>•</span>
+            <span id="sensoryCanopy">Canopy: High Neem Shade</span>
+          </div>
+        </div>
+
+        <!-- Big Touch / Tactile Navigation Controls -->
+        <div class="sensory-controls">
+          <button id="sensoryPrevBtn" class="btn sensory-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Previous Step</span>
+          </button>
+          
+          <button id="sensoryRepeatBtn" class="btn sensory-btn primary">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.08"></path>
+            </svg>
+            <span>Repeat Acoustic Cue (Space)</span>
+          </button>
+
+          <button id="sensoryNextBtn" class="btn sensory-btn">
+            <span>Next Step</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="sensory-footer">
+          <span>Keyboard shortcuts: [Space] Repeat • [Right Arrow] Next • [Left Arrow] Prev • [Esc] Exit</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio Settings Dialog -->
+    <dialog id="audioSettingsModal" class="settings-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Acoustic Navigation Settings</h3>
+          <button id="closeSettingsBtn" class="icon-close-btn">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-item">
+            <label for="voiceRateSlider">Speech Cadence (Rate): <span id="rateLabel">150 WPM</span></label>
+            <input type="range" id="voiceRateSlider" min="0.7" max="1.5" step="0.1" value="1.0">
+          </div>
+          <div class="setting-item">
+            <label for="voicePitchSlider">Voice Pitch: <span id="pitchLabel">1.0</span></label>
+            <input type="range" id="voicePitchSlider" min="0.7" max="1.3" step="0.1" value="1.0">
+          </div>
+          <div class="setting-item">
+            <label for="voiceSelect">TTS Voice Engine:</label>
+            <select id="voiceSelect" class="form-select"></select>
+          </div>
+          <div class="setting-item">
+            <label for="simSpeedSelect">Simulation Walk Pacing:</label>
+            <select id="simSpeedSelect" class="form-select">
+              <option value="1">Realistic (1x Walk Pace)</option>
+              <option value="2" selected>Preview (2x Speed)</option>
+              <option value="4">Fast Forward (4x Speed)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="testVoiceBtn" class="btn btn-outline">Test Voice Cue</button>
+          <button id="saveSettingsBtn" class="btn btn-primary">Save Settings</button>
+        </div>
+      </div>
+    </dialog>
+
+  </div>
+
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Main Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
