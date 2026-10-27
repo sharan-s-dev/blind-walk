@@ -72,6 +72,13 @@ For headless single-board computers (Raspberry Pi 4/5) or strict distraction-fre
 
 ---
 
+### 📺 Watch the Demo (3 min)
+
+[![Watch the VIGIL Walkthrough](https://i.ytimg.com/vi/m7NQ6o_PVRA/hqdefault.jpg)](https://youtu.be/m7NQ6o_PVRA)
+
+*(Click the image to watch the full demo on YouTube)*
+
+---
 ## 🗺️ Multi-Location Implementations: Flagship Campus & Regional Presets
 
 While **BlindWalk** was born out of personal necessity at my own college campus (**Jain University**), the system was engineered from day one to be completely location-agnostic. The application ships with **5 pre-compiled topological environments** and an integrated **real-time worldwide geocoding engine**:
