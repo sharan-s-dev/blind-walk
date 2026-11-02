@@ -1,304 +1,204 @@
-# BlindWalk 🌿
-BlindWalk: Zero-Screen Pedestrian Navigation Using Local Open-Weight AI and Directional Audio Beacons
+# BlindWalk
 
-[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-%202026-blueviolet?style=flat-square&logo=hacktoberfest)](https://hacktoberfest.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=flat-square)](LICENSE)
-[![Python: 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg?style=flat-square&logo=python)](https://python.org)
-[![Air-Gapped: 100% Local](https://img.shields.io/badge/Air--Gapped-100%25%20Localhost-success?style=flat-square)](https://github.com/)
+> Screenless, audio-first pedestrian navigation and loop routing engine.
 
-> **"Closed APIs fail off-grid. BlindWalk utilizes localized OpenStreetMap topology, quantized on-device models, and directional acoustic cues to provide zero-latency pedestrian navigation in zero-signal environments."**
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Watch%20Demo-red?logo=youtube)](https://www.youtube.com/watch?v=QFaH2oNeOLs)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f?logo=github)](https://sharan-s-dev.github.io/blind-walk/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://python.org)
 
-![BlindWalk Interactive Spatial UI on Jain Global Campus](web/preview.jpg)
-
----
-
-## 💡 The Backstory: Why I Built BlindWalk
-
-As a student at **Jain University Global Campus (Kanakapura Road, Karnataka)**, navigating our sprawling campus under the midday sun is an everyday challenge. Between classes, students have to trek across vast open grounds where midday temperatures regularly soar to **34°C–36°C (93°F–97°F)** with blinding sun glare.
-
-Whenever I tried navigating cross-campus, three major issues made standard map apps frustratingly useless:
-1. **Commercial maps are car-biased and shade-blind:** Apps like Google Maps persistently route pedestrians down blazing, open asphalt roads where the sun beats down relentlessly. They completely ignore our shaded neem tree corridors, tree-lined quads, and unpaved perimeter trails.
-2. **Cellular signal drops off-grid:** As soon as you walk past the academic blocks toward the sports grounds, cricket oval, or perimeter boundaries, 4G/5G signals plummet. Commercial maps freeze into useless blank gray checkerboards while waiting for cloud tile servers.
-3. **Screen fixation is dangerous and exclusionary:** Looking down at a smartphone screen under intense sunlight glare while walking on dirt trails is an easy way to trip over tree roots or rocks. More importantly, for blind or visually impaired students and hikers, visual graphical map interfaces are completely inaccessible.
-
-**BlindWalk** was built directly out of this real-world frustration: an **air-gapped spatial routing agent** that loads localized OpenStreetMap topology into an offline NetworkX graph, prioritizes tree canopy coverage and soft dirt paths over hot asphalt, and guides the pedestrian using **directional audio beacons, offline speech synthesis, and in-pocket haptic vibration**—with **zero screen time required**.
+BlindWalk is an eyes-free pedestrian routing system. Instead of requiring users to continuously watch a map screen, it computes walking loops over localized path networks and delivers turn-by-turn directions purely through spoken audio cues, directional sound beacons, and an AMOLED screenless interface.
 
 ---
 
-## 🌟 What You Can Do (Live Features)
+## Demo & Walkthrough
 
-🌐 **Live Deployed Web App:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/)  
-*(Open in any desktop or mobile browser — 100% free, zero installation, zero API keys required)*
+- **Live Web App:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/) (Runs client-side in any desktop or mobile browser)
+- **Video Walkthrough:** [YouTube Demo (4 mins)](https://www.youtube.com/watch?v=QFaH2oNeOLs)
 
-▶️ **Demo Video:** https://www.youtube.com/watch?v=QFaH2oNeOLs
-
-### 1. Interactive Web Cockpit (`http://localhost:8000` or Live URL)
-- **Verified Ground-Truth Campus Topology:** Mapped directly to verified ground features across Jain University Global Campus:
-  - 🏛️ **School of Engineering & Technology (SET Dome)** & Academic Quad
-  - ⛳ **Jain University Golf Course Shaded Trail**
-  - 🍲 **Campus Central Mess & Shaded Neem Walkway**
-  - 🏏 **Jain University Cricket Ground & Football Ground**
-  - 🏊 **JIRS Swimming Pool & Sports Complex**
-  - 🛕 **Jain Temple & Spiritual Garden**
-  - 🏟️ **Colloseum Amphitheater Walk**
-  - 🔬 **Core Block & Aerospace Lab Walk**
-- **Multi-Location Presets & Worldwide Map Search:**
-  - Instant presets for **Jain Global Campus**, **IISc Bangalore**, **Cubbon Park Nature Preserve**, **Lalbagh Botanical Garden**, and **Nandi Hills Hiking Reserve**.
-  - **Global OpenStreetMap Search:** Search any university, park, or city on Earth (e.g., *"Central Park New York"*, *"Lodhi Garden Delhi"*) to dynamically synthesize a shaded pedestrian loop anywhere.
-- **Natural Language Route Queries:** Type custom constraints or click presets:
-  - 🌿 *2 km Shaded Loop (Maximizes Neem Tree Canopy)*
-  - 🍂 *1.5 km Dirt Trail Walk*
-  - 🏃 *800m Fast Quad Sprint*
-  - 🌲 *3 km Forest Perimeter Exploration*
-- **Live Walk Audio Simulator:** Hit **"Simulate Walk Audio"** to watch an avatar walk the route step-by-step while the browser vocalizes each instruction with natural human cadence.
-- **Spatial Audio Beacons (Web Audio API):** Generates stereo-panned sound pings (left ear for left turns, right ear for right turns) designed for bone-conduction headsets.
-- **In-Pocket Haptic Vibration (Web Vibration API):** Phone vibrates in your pocket (double-buzz for left, single long buzz for right, micro-tick for straight) so you never even have to look at the device.
-- **One-Click GIS Exports:** Export your calculated route directly to standard **`.GPX`** (for Garmin watches / OsmAnd) or **GeoJSON** (for QGIS).
-
-### 2. AMOLED "Zero-Screen" Sensory Mode
-Press the **Zero-Screen Mode** button (or hit `Esc` to toggle):
-- The visual map is replaced with an AMOLED pitch-black acoustic display featuring an **active soundwave oscilloscope** and massive high-contrast step prompts.
-- Full tactile keyboard shortcuts for walking without looking:
-  - `[Space]` — Repeat current instruction
-  - `[Right Arrow]` — Skip to next waypoint
-  - `[Left Arrow]` — Step back to previous waypoint
-  - `[Esc]` — Return to map view
-
-### 3. Headless Air-Gapped Terminal Engine (`blindwalk.py`)
-For headless single-board computers (Raspberry Pi 4/5) or strict distraction-free runs:
-- Accepts a single terminal prompt.
-- **Instantly clears the terminal screen and suppresses all visual output**.
-- Speaks instructions offline using `pyttsx3` text-to-speech while logging an audit trail to `data/blindwalk_audit.log`.
+![BlindWalk Web Interface](web/preview.jpg)
 
 ---
 
-## 🗺️ Multi-Location Implementations: Flagship Campus & Regional Presets
+## Problem & Approach
 
-While **BlindWalk** was born out of personal necessity at my own college campus (**Jain University**), the system was engineered from day one to be completely location-agnostic. The application ships with **5 pre-compiled topological environments** and an integrated **real-time worldwide geocoding engine**:
+Standard map applications (Google Maps, Apple Maps) are designed around visual displays and vehicle traffic:
+- **Visual Distraction:** Walking while looking at a phone screen is awkward, distracting, and inaccessible for visually impaired or low-vision users.
+- **Car-Biased Routing:** Standard engines favor paved roadways over footpaths, park trails, and pedestrian corridors.
+- **Screen Glare:** Sunlight makes phone displays difficult to read outdoors.
 
-### 🎓 Primary Flagship Campus: Jain University Global Campus (Kanakapura)
-* **Coordinates:** NH 948, Kanakapura Road, Karnataka (`12.6395° N, 77.4420° E`)
-* **Context:** The creator's home college campus. Ground-truthed node-by-node to solve the everyday challenge of navigating between academic blocks and outer sports facilities under extreme 34°C–36°C midday sun.
-* **Verified Real Ground Landmarks:**
-  * 🏛️ **School of Engineering & Technology (SET Dome):** Central academic landmark with wide radial footpaths.
-  * ⛳ **Jain University Golf Course Shaded Trail:** Shaded dirt path buffering Kanakapura Road traffic.
-  * 🍲 **Campus Central Mess & Shaded Neem Corridor:** High-density neem tree corridor providing over 90% sun protection.
-  * 🏏 **Cricket & Football Grounds:** East athletic enclaves with perimeter dirt walking tracks.
-  * 🏊 **JIRS Swimming Pool & Sports Complex:** Recreational connector trail.
-  * 🛕 **Jain Temple & Spiritual Garden:** Quiet contemplative garden with dense green canopy.
-  * 🏟️ **Colloseum Amphitheater Walk:** Stone promenade overlooking open campus ridges.
-  * 🔬 **Core Block & Aerospace Lab Walk:** West perimeter unpaved trail connecting back to the main arrival gate.
+**BlindWalk takes a different approach:**
+1. **Pedestrian & Trail Prioritization:** Uses localized OpenStreetMap data via NetworkX to route over footways, unpaved trails, and walking paths.
+2. **Audio-First Feedback:** Converts topological path segments into spoken directions using the browser's Web Speech API (or `pyttsx3` in CLI mode), supplemented by stereo-panned audio beacons (Web Audio API) indicating left/right turns.
+3. **Screenless ("Zero-Screen") Mode:** Provides an AMOLED pitch-black interface with high-contrast text and tactile keyboard shortcuts (`Space` to repeat instruction, arrow keys to step through waypoints) so the phone can stay in a pocket.
 
 ---
 
-### 🏛️ Secondary Preset: Indian Institute of Science (IISc Bangalore)
-* **Coordinates:** Malleshwaram, Bangalore (`13.0219° N, 77.5671° E`)
-* **Context:** India's premier scientific research institute, celebrated for its 400-acre colonial-era green canopy and dense urban forest.
-* **Topological Highlights:**
-  * **Main Building (Faculty Hall):** Historic clock tower and central plaza.
-  * **Gulmohar Marg Canopy Trail:** Dense flowering tree canopy with filtered sunlight.
-  * **Tala Marg Eucalyptus Avenue:** High-shade dirt trail frequented by faculty and student walkers.
-  * **JRD Tata Memorial Library:** Academic center walkway.
-  * **Gymkhana Grounds:** South athletic perimeter path.
+## Core Features
+
+- **Pedestrian Loop Synthesis:** Enter a distance or constraint (e.g., `"2 km loop"`, `"1.5 km dirt trail"`). The routing engine searches topological cycles to generate closed walking loops matching the target distance.
+- **Turn-by-Turn Audio Guidance:** Vocalizes step distances, turns, and landmark waypoints with natural pacing.
+- **Spatial Audio Beacons:** Uses stereo panning (Web Audio API) to sound audio pings in the left or right ear corresponding to upcoming turns.
+- **AMOLED Zero-Screen Mode:** Replaces map rendering with an audio oscilloscope and readable instruction cards with tactile hotkeys.
+- **Preloaded Topologies:** Built-in network presets for:
+  - Jain University Global Campus (Kanakapura Road, Bangalore)
+  - Indian Institute of Science (IISc Bangalore)
+  - Cubbon Park Nature Preserve
+  - Lalbagh Botanical Garden
+  - Nandi Hills Hiking Reserve
+- **Global OSM Search:** Integrated OpenStreetMap Nominatim search geocodes any university, park, or city worldwide to generate local pedestrian loops dynamically.
+- **Multiple Map Layers:** Leaflet map supporting Esri World Imagery (satellite), OpenStreetMap (topographic), and terrain contour tiles.
+- **GIS Export:** One-click export of calculated routes to standard `.gpx` (Garmin/smartwatches) and GeoJSON.
+- **Headless Terminal Runner:** `blindwalk.py` allows running purely in the shell, clearing the terminal and speaking directions via offline TTS.
 
 ---
 
-### 🌿 Regional Preserve 1: Cubbon Park Nature Preserve
-* **Coordinates:** Central Bangalore (`12.9757° N, 77.5929° E`)
-* **Context:** Bangalore's 300-acre historic lung space, popular for early morning sensory walks and low-vision pedestrians.
-* **Topological Highlights:**
-  * **State Central Library (Seshadri Iyer Memorial Hall):** Red brick landmark and western trailhead.
-  * **Bamboo Grove Nature Trail:** Dense bamboo canopy offering near-total sun blockage.
-  * **Bandstand Historic Clearing:** Central circular walking promenade.
-  * **Bal Bhavan Perimeter:** Quiet shaded walkways separated from vehicular noise.
-  * **Queen Victoria Lawn Dirt Track:** Soft unpaved trail designed for joint-friendly walking.
+## Architecture
 
----
-
-### 🌳 Regional Preserve 2: Lalbagh Botanical Garden
-* **Coordinates:** South Bangalore (`12.9507° N, 77.5848° E`)
-* **Context:** World-famous 240-acre botanical enclave housing over 1,800 species of tropical trees, centuries-old bonsai, and wetland wildlife.
-* **Topological Highlights:**
-  * **Lalbagh Glass House Promenade:** Historic 1889 conservatory.
-  * **Bonsai Garden & Ancient Heritage Trees:** Multi-century-old ficus and banyan tree shade.
-  * **Lalbagh Lake Wetlands Boardwalk:** Waterside trail with natural breeze and cooling microclimate.
-  * **Kempegowda Rock Hilltop:** 3,000-million-year-old peninsular gneiss rock ascent.
-
----
-
-### 🏔️ Mountain Trail Preset: Nandi Hills Hiking Reserve
-* **Coordinates:** Chikkaballapur District, Karnataka (`13.3702° N, 77.6835° E` • Elevation: 1,478m)
-* **Context:** High-altitude ancient hill fortress showcasing BlindWalk's ability to navigate steep elevation gradients, dense pine groves, and off-grid mountain terrain where mobile reception is nonexistent.
-* **Topological Highlights:**
-  * **Tipu Sultan Summer Palace:** Heritage stone starting point.
-  * **Tipu's Drop Cliff Overlook:** Panoramic cliffside trail.
-  * **Amrutha Sarovar Lake Path:** Perennial sacred lake perimeter walk.
-  * **Arkavathi River Origin Pine Trail:** Dense misty pine forest trail with 95% canopy density.
-  * **Yoga Nandeeshwara Temple Ridge:** Stone stairs and ridgeline descent.
-
----
-
-### 🌍 Dynamic Worldwide Geocoding: Search Any Location on Earth
-BlindWalk is not restricted to pre-packaged coordinates. The integrated **OpenStreetMap Nominatim search engine** allows walkers to enter **any location worldwide**:
-1. Enter any query (e.g., *"Central Park New York"*, *"Hyde Park London"*, *"Lodhi Garden Delhi"*).
-2. The search engine resolves exact latitude/longitude coordinates via OpenStreetMap Nominatim.
-3. BlindWalk automatically pans the high-resolution satellite map to the target coordinates.
-4. The spatial engine dynamically generates an intelligent, localized pedestrian loop with varied terrain, calculates turn-by-turn steps, and begins voice and haptic guidance instantly.
-
----
-
-## 🏗️ Architecture Under the Hood
-
-```mermaid
-flowchart TD
-    subgraph Input["Input Layer"]
-        Prompt["Natural Language Prompt / Voice Input"]
-    end
-
-    subgraph Core["BlindWalk Spatial & Inference Engine"]
-        Cache[("campus_grid.graphml (OSMnx / NetworkX)")]
-        Router["SpatialRouter (Haversine Distance, Dynamic Bearings, Loop Basis)"]
-        Synthesizer["LangChain / Local Ollama (Quantized 1B-3B Model)"]
-    end
-
-    subgraph Output["Multimodal Navigation Output"]
-        WebUI["Interactive Web Cockpit (Leaflet + Audio Simulator)"]
-        ZeroScreen["AMOLED Zero-Screen Sensory Cockpit"]
-        SpatialAudio["Spatial Audio Beacons (Stereo Panned Sine Pings)"]
-        Haptics["In-Pocket Haptic Vibration (Web Vibration API)"]
-        CLI["Headless Audio CLI (pyttsx3 Offline TTS)"]
-        GIS["Standard .GPX / GeoJSON Export"]
-    end
-
-    Prompt --> Router
-    Cache --> Router
-    Router -->|Topological Segments| Synthesizer
-    Synthesizer -->|RoutingCommand Array| WebUI
-    Synthesizer -->|RoutingCommand Array| ZeroScreen
-    Synthesizer -->|RoutingCommand Array| CLI
-    WebUI --> SpatialAudio
-    WebUI --> Haptics
-    WebUI --> GIS
+```
+User Query / Location
+         │
+         ▼
+┌──────────────────────────────────────────────┐
+│            Routing & Spatial Engine          │
+│  - Parses target distance & loop constraints │
+│  - NetworkX graph traversal (OSM topology)   │
+│  - Edge weighting (footways, trails, paths)  │
+└──────────────────────┬───────────────────────┘
+                       │ Path Segments
+                       ▼
+┌──────────────────────────────────────────────┐
+│           Command Synthesis Layer            │
+│  - Formats steps into turn-by-turn cues      │
+│  - Optional: Local Ollama (llama3.2:3b)      │
+│  - Deterministic fallback synthesizer        │
+└──────────────────────┬───────────────────────┘
+                       │ Structured Commands
+         ┌─────────────┴─────────────┐
+         ▼                           ▼
+┌──────────────────┐       ┌──────────────────┐
+│  Web Application │       │   Terminal CLI   │
+│  (web/app.js)    │       │  (blindwalk.py)  │
+│  - Leaflet Map   │       │  - Offline TTS   │
+│  - Web Speech    │       │  - Zero visual   │
+│  - Web Audio     │       │    terminal mode │
+│  - Zero-Screen   │       └──────────────────┘
+└──────────────────┘
 ```
 
 ---
 
-## 🔒 Location Data Sovereignty
+## Tech Stack
 
-Modern commercial navigation apps upload continuous real-time telemetry: GPS breadcrumbs, velocity vectors, dwelling durations, and behavioral profiles. 
-
-In contrast, BlindWalk is built from the ground up on **cryptographic air-gapping**:
-
-| Metric | Commercial Cloud Navigation | BlindWalk Stack |
-| :--- | :--- | :--- |
-| **Outbound Telemetry** | Continuous background pings | **0 packets transmitted (Air-gapped)** |
-| **GPS Coordinate Storage** | Stored on remote corporate servers | **Ephemeral in local RAM only** |
-| **Model Weights** | Hosted proprietary cloud API | **Local quantized open weights (Ollama)** |
-| **Network Graph** | Streamed vector tiles | **Local immutable `.graphml` file** |
-| **Offline Reliability** | Fails or degrades in dead zones | **100% deterministic local computation** |
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | Vanilla JavaScript (ES6+), HTML5, CSS3, [Leaflet.js](https://leafletjs.com/) |
+| **Audio & Speech** | Web Speech API, Web Audio API, `pyttsx3` (Python CLI) |
+| **Spatial Graph** | Python 3.10+, [NetworkX](https://networkx.org/), [OSMnx](https://osmnx.readthedocs.io/), GraphML |
+| **Inference (Optional)** | Local [Ollama](https://ollama.com/) (`llama3.2:3b`) via LangChain (deterministic offline fallback included) |
+| **Server** | Python `http.server` (zero external dependencies) |
 
 ---
 
-## 🌲 Empirical Field Walk: Jain University Campus
+## Getting Started
 
-To validate the system empirically, I field-tested BlindWalk across the **Jain Global Campus, Kanakapura Road** in strict **Airplane Mode** (Cellular radio OFF, Wi-Fi OFF, Bluetooth beaconing OFF).
+### 1. Web Application
 
-### Hardware & Test Setup
-- **Device:** Mobile terminal with bone-conduction headset.
-- **Starting Location:** Campus Arrival Gate off Kanakapura Road (`12.6418° N, 77.4372° E`).
-- **Prompt:** `"Calculate a 2-kilometer loop maximizing tree canopy exposure"`
+#### Option A: Direct Browser (No install needed)
+Open `web/index.html` directly in any modern browser, or visit the [GitHub Pages live deployment](https://sharan-s-dev.github.io/blind-walk/).
 
-### Measured Field Metrics
-
-| Metric | Target | Measured Value | Result |
-| :--- | :--- | :--- | :--- |
-| **Route Distance** | 2,000 meters | **2,012.4 meters** | **99.4% Accuracy (+0.6% delta)** |
-| **Time to First Audio Cue** | < 1,000 ms | **543 ms** | Instant acoustic response |
-| **3B Model Synthesis Latency**| < 2,500 ms | **1,120 ms (Ollama)** | Real-time on-device execution |
-| **Total Stack RAM Footprint** | < 4.0 GB | **2.1 GB RAM** | Lightweight profile |
-| **Route Tree Canopy Exposure**| > 70% | **84% under shade** | Protected against 35°C noon sun |
-| **Network Packets Leaked** | 0 | **0 packets (Airplane Mode)** | 100% sovereign |
-
-### Turn-by-Turn Acoustic Log
-```
-[00:00] "BlindWalk zero-screen sensory mode engaged. Visual output muted."
-[00:01] "Route calculated for Jain Global Campus (Kanakapura). Total distance is 2.01 km across 8 waypoints, with maximum tree canopy exposure."
-[00:02] "Step 1. Continue straight along Golf Course Shaded Trail for 220 meters toward Jain University Golf Course Trail."
-[00:04] "Step 2. Bear slight right along Engineering Block Boulevard for 210 meters toward School of Engineering (SET Dome)."
-[00:06] "Step 3. Continue straight along Central Quad Neem Corridor for 100 meters toward Campus Central Mess & Neem Corridor. Dense neem shade."
-[00:08] "Step 4. Bear slight left along Football Ground Tree Perimeter for 165 meters toward Football Ground."
-[00:10] "Step 5. Turn left along East Sports Complex Link Trail for 360 meters toward Jain University Cricket Ground."
-[00:12] "Step 6. Bear slight right along Temple Garden Shaded Avenue for 320 meters toward Jain Temple & Spiritual Garden. Dense tree canopy."
-[00:14] "Step 7. Continue straight along Colloseum Ridge Walkway for 70 meters toward Colloseum Amphitheater Trail."
-[00:16] "Step 8. Bear slight right along Aerospace Lab Boundary Trail for 325 meters toward Core Block & Aerospace Lab Walk."
-[00:18] "Navigation complete. You have arrived back at your destination."
-```
-
----
-
-## ⚡ Quickstart Guide
-
-### 1. Run the Interactive Web Cockpit (Recommended)
-You can launch the full web interface immediately:
-
+#### Option B: Local Python Server
 ```bash
 # Clone the repository
 git clone https://github.com/sharan-s-dev/blind-walk.git
 cd blind-walk
 
-# Start the local server
+# Start local server
 npm start
 # (Or: python server.py)
 ```
+Open **`http://localhost:8000`** in your browser.
 
-Now open **[http://localhost:8000](http://localhost:8000)** in your browser!
-- Click preset chips (e.g. **🌿 2 km Shaded Loop**).
-- Click **"Simulate Walk Audio"** to test turn-by-turn voice pacing.
-- Click **"Zero-Screen Mode"** to experience the screenless AMOLED interface.
-- Click **"Export .GPX"** to download the path for your smartwatch or GPS device.
+---
 
-### 2. Run the Headless Terminal Mode
-For screen-free runs directly in your shell:
+### 2. Headless Terminal CLI
+
+For running on single-board computers (e.g. Raspberry Pi) or distraction-free terminal use:
+
 ```bash
-python blindwalk.py
-# (Or: npm run cli)
-```
-Type your query and hit Enter. The terminal will immediately wipe itself blank and begin speaking directions through your speakers.
+# Install dependencies
+pip install -r requirements.txt
 
-### 3. Run via Docker Compose
-To run the complete isolated container stack with local Ollama inference:
+# Run interactive CLI
+python blindwalk.py
+
+# Or pass a query directly
+python blindwalk.py --query "Calculate a 2-kilometer loop"
+```
+
+The terminal will clear itself and begin speaking directions through the system audio output.
+
+---
+
+### 3. Docker
+
+To run via Docker Compose:
+
 ```bash
 docker compose up -d
 ```
-Access the web dashboard at `http://localhost:8000` or attach to the container:
-```bash
-docker compose exec -it blindwalk-app python blindwalk.py
-```
+Access the web cockpit at `http://localhost:8000`.
 
-### 4. Run the Automated Tests
+---
+
+## Keyboard Controls (Zero-Screen Mode)
+
+When Zero-Screen mode is active (`Esc` to toggle):
+
+| Key | Function |
+| :--- | :--- |
+| `[Space]` | Repeat current audio instruction |
+| `[→]` (Right Arrow) | Advance to next waypoint |
+| `[←]` (Left Arrow) | Return to previous waypoint |
+| `[Esc]` | Toggle between Zero-Screen mode and Map View |
+
+---
+
+## Running Tests
+
+The test suite covers spatial calculations, bearing logic, constraint parsing, and fallback synthesizers:
+
 ```bash
 npm test
 # (Or: python -m unittest discover tests -v)
 ```
-Output:
+
+---
+
+## Project Structure
+
 ```
-Ran 10 tests in 0.125s
-OK (All 10 spatial geometry, loop algorithm, and suppressor tests passing)
+blind-walk/
+├── web/
+│   ├── index.html        # Web cockpit & AMOLED zero-screen interface
+│   ├── app.js            # Pathfinding, Web Speech & Web Audio synthesis
+│   ├── style.css         # AMOLED dark theme styling
+│   └── preview.jpg       # Interface screenshot
+├── engine/
+│   ├── spatial.py        # NetworkX spatial router & OSM graph traversal
+│   ├── llm_agent.py      # LangChain/Ollama agent + deterministic fallback
+│   └── audio_output.py   # pyttsx3 offline acoustic navigator & CLI suppressor
+├── tests/                # Unit and integration test suite
+├── server.py             # Lightweight local HTTP API server
+├── blindwalk.py          # Headless zero-screen terminal CLI
+├── cache_map.py          # OSM data fetch and GraphML serialization
+├── config.py             # Campus coordinate presets & configuration
+├── requirements.txt      # Python dependencies
+└── package.json          # Node script runner shortcuts
 ```
----
-> 🎧 **Quick Tip:** Wear headphones when testing the [Live Demo](https://sharan-s-dev.github.io/blind-walk/) to hear the binaural stereo-panned beacon pings (left ear for left turns, right ear for right turns)!
----
-
-## 🤝 Contributing to Hacktoberfest
-
-Contributions are enthusiastically welcomed! Check out [`CONTRIBUTING.md`](CONTRIBUTING.md) for:
-- 🗺️ Adding new university campuses & nature reserves to `config.py`
-- 🌐 Adding regional Indian and global language support to voice synthesis
-- 🎧 Improving spatial audio beacon algorithms in Web Audio API
-- 📳 Integrating Web Vibration API haptics for mobile devices
 
 ---
 
-## 📜 License
+## License
 
-BlindWalk is licensed under the **[MIT License](LICENSE)**. Built with pride for open-source navigation, accessibility, and personal data sovereignty.
+This project is licensed under the [MIT License](LICENSE).
