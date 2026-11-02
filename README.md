@@ -16,8 +16,7 @@ Most navigation apps glue your eyes to a screen, watching blue dots on a map whi
 ## 📺 Live Demo & Video Walkthrough
 
 - 🌐 **Live Web Application:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/)  
-  *(Runs client-side in any modern browser — zero sign-up, zero installation, 100% free)*
-- 🎬 **YouTube Video Walkthrough:** [BlindWalk: A Screenless Spatial Navigator (4 mins)](https://www.youtube.com/watch?v=QFaH2oNeOLs)
+- 🎬 **YouTube Video Walkthrough:** https://www.youtube.com/watch?v=QFaH2oNeOLs
 
 ![BlindWalk Interactive Spatial UI Preview](web/preview.jpg)
 
