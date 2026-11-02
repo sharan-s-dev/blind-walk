@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?style=flat-square&logo=python)](https://python.org)
 
-> Built for **Hacktoberfest 2026** by [Sharan Suresh](https://github.com/sharan-s-dev) (B.Tech CSE, Jain University).
+> Built for **Hacktoberfest 2026** .
 
 Most navigation apps glue your eyes to a screen, watching blue dots on a map while piping your live location telemetry to remote cloud servers. **BlindWalk** is built to be completely eyes-free and offline: it translates localized path networks into landmark-based acoustic cues and spatial audio beacons, letting pedestrians and low-vision walkers navigate without looking down at a screen.
 
