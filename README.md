@@ -14,7 +14,7 @@ BlindWalk is an eyes-free pedestrian routing system. Instead of requiring users 
 ## Demo & Walkthrough
 
 - **Live Web App:** [https://sharan-s-dev.github.io/blind-walk/](https://sharan-s-dev.github.io/blind-walk/)
-- **Video Walkthrough:** (https://www.youtube.com/watch?v=QFaH2oNeOLs)
+- **Video Walkthrough:** https://www.youtube.com/watch?v=QFaH2oNeOLs
 
 ![BlindWalk Web Interface](web/preview.jpg)
 
